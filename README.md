@@ -28,3 +28,4 @@ MI2S (Multimodal Image2Stories) is an innovative application designed to transfo
 ### Journals/Reposities/App Reference
 1. [seiweiqing - image2story](https://github.com/seaweiqing/image2story) (Github Repo)
 2. [Let Storytelling Tell Vivid Stories: An Expressive and Fluent Multimodal Storyteller](https://arxiv.org/html/2403.07301v1) (Journal)
+3. [LLaVA: Large Language and Vision Assistant](https://llava-vl.github.io/) (Journal & Github Repo)
