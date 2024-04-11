@@ -11,12 +11,20 @@ Since I was a teenager, I have really admired art. I prefer drawing art to writt
 The presence of the latest technology such as multimodal models such as Gemini-AI provides unlimited possibilities. This makes it possible for any idea I might have had to be realized. The idea of using multimodal models to generate stories based on image input without needing to create a special model to generate stories from images.
 
 ### App Description
+MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
 
 ### Link app
-MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
+- App: [still being made]
 
 ### Technologies
 1. Python
-2. Streamlit (python framework)
+2. Streamlit (python framework and deployment)
 3. Gemini AI (access via API)
 4. Database? (still being considered)
+
+### Graph
+*later*
+
+### Journals/Reposities/App Reference
+1. [seiweiqing - image2story](https://github.com/seaweiqing/image2story) (Github Repo)
+2. [Let Storytelling Tell Vivid Stories: An Expressive and Fluent Multimodal Storyteller](https://arxiv.org/html/2403.07301v1) (Journal)
