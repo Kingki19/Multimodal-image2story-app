@@ -2,7 +2,7 @@
 ![MI2S Logo](https://github.com/Kingki19/Multimodal-image2story-app/blob/main/images/MI2S%20logo.png)  
 *Logo image from: [https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3](https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3)*
 
-### Why i made this app?
+### Why was this application created?
 1. [Hackaton Google AI challenges](https://googleai.devpost.com/)  
 Build a creative app that uses Google’s Generative AI tools. Push the boundaries of what Gen AI apps can do with Gemini! 
 2. A wish since teenage  
