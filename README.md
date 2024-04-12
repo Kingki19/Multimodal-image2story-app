@@ -2,6 +2,11 @@
 ![MI2S Logo](https://github.com/Kingki19/Multimodal-image2story-app/blob/main/images/MI2S%20logo.png)  
 *Logo image from: [https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3](https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3)*
 
+### To-Do List
+- [x] Create Gemini-AI API key access as variable and input
+- [ ] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
+- [ ] Create 
+
 ### Motivation Behind Creating this Application
 1. **Hackathon Inspiration**:  
 The genesis of this application stems from the challenges posed by the [Google AI Hackathon](https://googleai.devpost.com/). The goal was to craft an innovative app leveraging Google's Generative AI tools, particularly focusing on pushing the boundaries of what Gen AI apps can achieve with Gemini.
@@ -26,7 +31,9 @@ MI2S (Multimodal Image2Stories) is an innovative application designed to transfo
 ### Graph
 *later*
 
-### Journals/Reposities/App Reference
+### Journals/Reposities/App Reference & Inspiration
 1. [seiweiqing - image2story](https://github.com/seaweiqing/image2story) (Github Repo)
 2. [Let Storytelling Tell Vivid Stories: An Expressive and Fluent Multimodal Storyteller](https://arxiv.org/html/2403.07301v1) (Journal)
 3. [LLaVA: Large Language and Vision Assistant](https://llava-vl.github.io/) (Journal & Github Repo)
+
+> Damn, i do this all alone. I hope it's works as expected. It's easy to finish project if i handle it myself.
