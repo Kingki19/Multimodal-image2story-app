@@ -46,6 +46,5 @@ def main():
   """)
   gemini_api_input()
 
-main()
 # Execute main
 main()
