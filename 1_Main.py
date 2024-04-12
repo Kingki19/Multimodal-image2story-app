@@ -2,7 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 
 def page_config():
-        ''' Function to manage page config
+        ''' Function to manage page configuration
         '''
         st.set_page_config(
                 page_title="MI2S",
@@ -44,9 +44,27 @@ def gemini_api_input():
                 if 'gemini_api_key' not in st.session_state:
                         st.session_state['gemini_api_key'] = input_gemini_api
      
+def tab_input():
+        ''' Function to create tab for input images and another element to generate story
+        '''
+        st.subheader('Input')
+        st.write('test')
 
-# debug
-# input_tabs, output_tabs, 
+def tab_story():
+        ''' Function to create tab for story output
+        '''
+        st.subheader('Stories Output')
+        st.markdown("""
+        *under development*
+        """)
+        
+def tab_chat():
+        ''' Function to create tab for chatting with story
+        '''
+        st.subheader('Chat with stories')
+        st.markdown("""
+        *under development*
+        """)
 
 def main():
         ''' MAIN EXECUTION APPS IN HERE
@@ -63,6 +81,13 @@ def main():
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
         gemini_api_input()
+        tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
+        if tab1:
+                tab_input()
+        elif tab2:
+                tab_story()
+        elif tab3:
+                tab_chat()
 
 # Execute main
 main()
