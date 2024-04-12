@@ -6,10 +6,10 @@ st.divider()
 
 # Description
 st.markdown("""
-MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives.  
-This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images.   
-By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences.  
-Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts. 
+MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. 
+This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. 
+By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
+Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
 """)  
 
 # Input API key for Gemini API
