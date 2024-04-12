@@ -5,7 +5,19 @@
 ### To-Do List
 - [x] Create Gemini-AI API key access as variable and input
 - [ ] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
-- [ ] Create 
+  - [ ] (1) Create Main apps [in progress]
+    - [ ] Create tabs for input images
+      - Make it repetitive and can generate story based on new image input and text-stories that already generated;
+      - Input:
+        - Images input
+        - Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
+        - Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
+        - Image Type: e.g Character, backstory, moments, etc
+        - Total paragraph result: 1 to 3 paragraph
+        - Additional message (optional)
+    - [ ] Create tabs for stories
+  - [ ] (2) Create documentation
+  - [ ] (3) Create About
 
 ### Motivation Behind Creating this Application
 1. **Hackathon Inspiration**:  
@@ -35,5 +47,6 @@ MI2S (Multimodal Image2Stories) is an innovative application designed to transfo
 1. [seiweiqing - image2story](https://github.com/seaweiqing/image2story) (Github Repo)
 2. [Let Storytelling Tell Vivid Stories: An Expressive and Fluent Multimodal Storyteller](https://arxiv.org/html/2403.07301v1) (Journal)
 3. [LLaVA: Large Language and Vision Assistant](https://llava-vl.github.io/) (Journal & Github Repo)
+4. [Photo story apps](https://boredhumans.com/photo_story.php) (Website apps)
 
 > Damn, i do this all alone. I hope it's works as expected. It's easy to finish project if i handle it myself.
