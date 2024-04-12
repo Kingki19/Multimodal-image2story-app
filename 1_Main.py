@@ -10,7 +10,19 @@ def page_config():
                 layout="wide",
                 initial_sidebar_state="expanded"
         )
-  
+
+def check_gemini_api_key(gemini_api_key):
+        ''' Function to check whether the API key was really exist
+        This function especially made for `gemini_api_input()` below
+        '''
+        if len(input_gemini_api) != 0:
+                try:
+                        genai.configure(api_key=input_gemini_api)
+                        model = genai.GenerativeModel('gemini-pro')
+                        response = model.generate_content("Hello")
+                except Exception as e:
+                        st.warning(e)
+                        
 def gemini_api_input():
         ''' Function to input and manage Gemini-AI api key
         '''
@@ -27,13 +39,7 @@ def gemini_api_input():
                 [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
                 ''')
                 # Just checking whether the API key was right
-                if len(input_gemini_api) != 0:
-                        try:
-                                genai.configure(api_key=input_gemini_api)
-                                model = genai.GenerativeModel('gemini-pro')
-                                response = model.generate_content("Hello")
-                        except Exception as e:
-                                st.warning(e)
+                check_gemini_api_key(input_gemini_api)
                 # Add api key to session state
                 if 'gemini_api_key' not in st.session_state:
                         st.session_state['gemini_api_key'] = input_gemini_api
