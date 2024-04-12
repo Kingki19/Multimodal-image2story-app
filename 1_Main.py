@@ -92,8 +92,9 @@ def main():
         with st.container(border=True):
                 gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
+	
         with tab1:
-		if_key_in_session_state(tab_input())
+			if_key_in_session_state(tab_input())
         with tab2:
                 if_key_in_session_state(tab_story())
         with tab3:
