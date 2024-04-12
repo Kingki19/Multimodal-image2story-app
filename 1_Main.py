@@ -26,7 +26,7 @@ def check_gemini_api_key(gemini_api_key):
 def gemini_api_input():
         ''' Function to input and manage Gemini-AI api key
         '''
-st.session_state['gemini_api_key'] = None
+        st.session_state['gemini_api_key'] = None
         # Input API key for Gemini API
         input_gemini_api = st.text_input(
                 label='Gemini-AI API key',
