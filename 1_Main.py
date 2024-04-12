@@ -26,24 +26,33 @@ def check_gemini_api_key(gemini_api_key):
 def gemini_api_input():
         ''' Function to input and manage Gemini-AI api key
         '''
-        with st.container(border=True):
-                # Input API key for Gemini API
-                input_gemini_api = st.text_input(
-                        label='Gemini-AI API key',
-                        placeholder='Input your own Gemini-AI API key',
-                        type='password',
-                        help='required to use this application'
-                )
-                st.markdown('''
-                Or if you don't have one, get your own Gemini-AI API key here:  
-                [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-                ''')
-                # Just checking whether the API key was right
-                check_gemini_api_key(input_gemini_api)
-                # Add api key to session state
-                if 'gemini_api_key' not in st.session_state:
-                        st.session_state['gemini_api_key'] = input_gemini_api
-     
+        # Input API key for Gemini API
+        input_gemini_api = st.text_input(
+                label='Gemini-AI API key',
+                placeholder='Input your own Gemini-AI API key',
+                type='password',
+                help='required to use this application'
+        )
+        st.markdown('''
+        Or if you don't have one, get your own Gemini-AI API key here:  
+        [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+        ''')
+        api_key_valid = True
+        try:
+        	check_gemini_api_key(input_gemini_api)
+        except Exception:
+        	api_key_valid = False
+        if api_key_valid and 'gemini_api_key' not in st.session_state:
+        	st.session_state['gemini_api_key'] = input_gemini_api
+
+def if_key_in_session_state(funct):
+	''' function to check if key exist and pass another function
+ 	'''
+	if 'gemini_api_key' in st.session_state:
+		funct
+	else:
+		st.warning('There is no Gemini API Key in session state')
+
 def tab_input():
         ''' Function to create tab for input images and another element to generate story
         '''
@@ -53,15 +62,15 @@ def tab_input():
 def tab_story():
         ''' Function to create tab for story output
         '''
-        st.subheader('Stories Output')
+        st.subheader('Story Output')
         st.markdown("""
         *under development*
         """)
         
 def tab_chat():
-        ''' Function to create tab for chatting with story
+        ''' Function to create tab for chat with story
         '''
-        st.subheader('Chat with stories')
+        st.subheader('Chat with story')
         st.markdown("""
         *under development*
         """)
@@ -80,14 +89,15 @@ def main():
         By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
-        gemini_api_input()
+        with st.container(border=True):
+                gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
         with tab1:
-                tab_input()
+		if_key_in_session_state(tab_input())
         with tab2:
-                tab_story()
+                if_key_in_session_state(tab_story())
         with tab3:
-                tab_chat()
+                if_key_in_session_state(tab_chat())
 
 # Execute main
 main()
