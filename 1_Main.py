@@ -49,8 +49,15 @@ def tab_input():
         ''' Function to create tab for input images and another element to generate story
         '''
         st.subheader('Input')
-        st.write('test')
-
+        col_image_upload, col_image_show = st.columns(2)
+        with col_image_upload:
+                uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+        with col_image_show:
+                for uploaded_file in uploaded_files:
+                        bytes_data = uploaded_file.read()
+                        st.write("filename:", uploaded_file.name)
+                        st.write(bytes_data)
+                
 def tab_story():
         ''' Function to create tab for story output
         '''
@@ -84,7 +91,6 @@ def main():
         with st.container(border=True):
                 gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
-	
         with tab1: tab_input()
         with tab2: tab_story()
         with tab3: tab_chat()
