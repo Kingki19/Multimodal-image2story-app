@@ -26,7 +26,6 @@ def check_gemini_api_key(gemini_api_key):
 def gemini_api_input():
         ''' Function to input and manage Gemini-AI api key
         '''
-        st.session_state['gemini_api_key'] = None
         # Input API key for Gemini API
         input_gemini_api = st.text_input(
                 label='Gemini-AI API key',
@@ -50,7 +49,7 @@ def if_key_in_session_state(funct):
 	''' Function to check if the Gemini API key exists in the session state and pass another function if it does
 	'''
 	gemini_api_key = st.session_state['gemini_api_key']
-	if gemini_api_key != None:
+	if len(gemini_api_key) != 0:
 		funct()
 	else:
 		st.warning('There is no Gemini API Key in session state')
