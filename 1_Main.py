@@ -15,9 +15,9 @@ def check_gemini_api_key(gemini_api_key):
         ''' Function to check whether the API key was really exist
         This function especially made for `gemini_api_input()` below
         '''
-        if len(input_gemini_api) != 0:
+        if len(gemini_api_key) != 0:
                 try:
-                        genai.configure(api_key=input_gemini_api)
+                        genai.configure(api_key=gemini_api_key)
                         model = genai.GenerativeModel('gemini-pro')
                         response = model.generate_content("Hello")
                 except Exception as e:
