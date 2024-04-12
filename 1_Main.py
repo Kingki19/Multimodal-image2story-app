@@ -86,7 +86,7 @@ def main():
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
 	
         with tab1: 
-		tab_input()
+			tab_input()
         with tab2: 
 		tab_story()
         with tab3: 
