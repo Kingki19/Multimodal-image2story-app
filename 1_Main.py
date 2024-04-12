@@ -46,12 +46,14 @@ def gemini_api_input():
         	st.session_state['gemini_api_key'] = input_gemini_api
 
 def if_key_in_session_state(funct):
-	''' function to check if key exist and pass another function
- 	'''
-	if 'gemini_api_key' in st.session_state:
+	''' Function to check if the Gemini API key exists in the session state and pass another function if it does
+	'''
+	gemini_api_key = st.session_state.get('gemini_api_key', '')
+	if gemini_api_key:
 		funct()
 	else:
 		st.warning('There is no Gemini API Key in session state')
+
 
 def tab_input():
         ''' Function to create tab for input images and another element to generate story
@@ -93,7 +95,8 @@ def main():
                 gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
 	
-        with tab1: if_key_in_session_state(tab_input)
+        with tab1:
+		if_key_in_session_state(tab_input)
         with tab2:
                 if_key_in_session_state(tab_story)
         with tab3:
