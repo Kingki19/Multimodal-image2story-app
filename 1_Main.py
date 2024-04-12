@@ -56,7 +56,7 @@ def tab_input():
         with col_image_upload:
                 uploaded_image = st.file_uploader("Choose image file", 
                                                   type=["jpg", "jpeg", "png"], 
-                                                  help='Only accept these format: jpg, jpeg, png')
+                                                  help='Only accept one image')
         with col_image_show:
                 if uploaded_image is not None:
                         st.write("filename:", uploaded_image.name)
@@ -64,7 +64,8 @@ def tab_input():
                                  caption="Uploaded Image", 
                                  use_column_width='auto')
                 
-                
+        st.write('test')
+        
 def tab_story():
         ''' Function to create tab for story output
         '''
