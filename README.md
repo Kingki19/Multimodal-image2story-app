@@ -14,8 +14,9 @@
         - Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
         - Image Type: e.g Character, backstory, moments, etc
         - Total paragraph result: 1 to 3 paragraph
-        - Additional message (optional)
+        - Additional message (optional) 
     - [ ] Create tabs for stories
+    - [ ] Create tabs for chat with stories
   - [ ] (2) Create documentation
   - [ ] (3) Create About
 
