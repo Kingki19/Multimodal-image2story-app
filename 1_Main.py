@@ -48,15 +48,16 @@ def gemini_api_input():
 def tab_input():
         ''' Function to create tab for input images and another element to generate story
         '''
-        st.subheader('Input')
+        st.subheader('Input Image and Elements')
+        st.markdown('> For right now, only limited to one image per upload')
+        
+        # Columns for image
         col_image_upload, col_image_show = st.columns(2)
         with col_image_upload:
-                uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+                uploaded_image = st.file_uploader("Choose image file", accept_multiple_files=False)
         with col_image_show:
-                for uploaded_file in uploaded_files:
-                        bytes_data = uploaded_file.read()
-                        st.write("filename:", uploaded_file.name)
-                        st.write(bytes_data)
+                st.write("filename:", uploaded_image.name)
+                
                 
 def tab_story():
         ''' Function to create tab for story output
