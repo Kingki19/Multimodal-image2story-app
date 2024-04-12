@@ -1,43 +1,51 @@
 import streamlit as st
 import google.generativeai as genai
 
-# App title
-st.title('MI2S: Multimodal Image-2-Stories using Gemini-AI')
-st.divider()
 
-# Description
-st.markdown("""
-MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. 
-This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. 
-By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
-Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
-""")  
-
-# Container for Gemini-AI API Key Input
-with st.container(border=True):
-  # Input API key for Gemini API
-  input_gemini_api = st.text_input(
-    label = 'Gemini-AI API key',
-    placeholder = 'Input your own Gemini-AI API key',
-    type = 'password',
-    help = 'required to use this application'
-  )
+def gemini_api_input():
+  '''
+  Function to input and manage Gemini-AI api key
+  '''
+  with st.container(border=True):
+    # Input API key for Gemini API
+    input_gemini_api = st.text_input(
+      label='Gemini-AI API key',
+      placeholder='Input your own Gemini-AI API key',
+      type='password',
+      help='required to use this application'
+    )
   # Just checking whether the API key was right
   if len(input_gemini_api) != 0:
     try:
       genai.configure(api_key=input_gemini_api)
       model = genai.GenerativeModel('gemini-pro')
       response = model.generate_content("Hello")
-    except Exception as e:   
+    except Exception as e:
       st.warning(e)
-      
-  # If it's true   
-  if 'gemini_api_key' not in st.session_state:
+    # Add api key to session state
+    if 'gemini_api_key' not in st.session_state:
       st.session_state['gemini_api_key'] = input_gemini_api
-  st.markdown('''
-  Or if you don't have one, get your own Gemini-AI API key here:  
-  [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-  ''')
+    st.markdown('''
+    Or if you don't have one, get your own Gemini-AI API key here:  
+    [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+    ''')
 
 # debug
-st.write(st.session_state['gemini_api_key'])
+# input_tabs, output_tabs, 
+
+def main():
+  # App title
+  st.title('MI2S: Multimodal Image-2-Stories using Gemini-AI')
+  st.divider()
+  # Description
+  st.markdown("""
+  MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. 
+  This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. 
+  By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
+  Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
+  """)
+  gemini_api_input()
+
+main()
+# Execute main
+main()
