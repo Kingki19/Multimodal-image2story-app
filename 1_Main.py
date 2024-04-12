@@ -22,21 +22,21 @@ def gemini_api_input():
       type='password',
       help='required to use this application'
     )
-  # Just checking whether the API key was right
-  if len(input_gemini_api) != 0:
-    try:
-      genai.configure(api_key=input_gemini_api)
-      model = genai.GenerativeModel('gemini-pro')
-      response = model.generate_content("Hello")
-    except Exception as e:
-      st.warning(e)
-    # Add api key to session state
-    if 'gemini_api_key' not in st.session_state:
-      st.session_state['gemini_api_key'] = input_gemini_api
-    st.markdown('''
-    Or if you don't have one, get your own Gemini-AI API key here:  
-    [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
-    ''')
+    # Just checking whether the API key was right
+    if len(input_gemini_api) != 0:
+      try:
+        genai.configure(api_key=input_gemini_api)
+        model = genai.GenerativeModel('gemini-pro')
+        response = model.generate_content("Hello")
+      except Exception as e:
+        st.warning(e)
+      # Add api key to session state
+      if 'gemini_api_key' not in st.session_state:
+        st.session_state['gemini_api_key'] = input_gemini_api
+      st.markdown('''
+      Or if you don't have one, get your own Gemini-AI API key here:  
+      [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+      ''')
 
 # debug
 # input_tabs, output_tabs, 
