@@ -60,7 +60,9 @@ def tab_input():
         with col_image_show:
                 if uploaded_image is not None:
                         st.write("filename:", uploaded_image.name)
-                        st.image(uploaded_image, caption="Uploaded Image")
+                        st.image(uploaded_image, 
+                                 caption="Uploaded Image", 
+                                 width=300)
                 
                 
 def tab_story():
