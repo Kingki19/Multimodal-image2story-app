@@ -82,11 +82,11 @@ def main():
         """)
         gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
-        if tab1:
+        with tab1:
                 tab_input()
-        elif tab2:
+        with tab2:
                 tab_story()
-        elif tab3:
+        with tab3:
                 tab_chat()
 
 # Execute main
