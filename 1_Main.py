@@ -1,10 +1,18 @@
 import streamlit as st
 import google.generativeai as genai
 
-
-def gemini_api_input():
+def page_config():
+  ''' Function to manage page config
   '''
-  Function to input and manage Gemini-AI api key
+  st.set_page_config(
+    page_title="MI2S",
+    page_icon="📝",
+    layout="wide",
+    initial_sidebar_state="expanded"
+  )
+  
+def gemini_api_input():
+  ''' Function to input and manage Gemini-AI api key
   '''
   with st.container(border=True):
     # Input API key for Gemini API
@@ -34,6 +42,7 @@ def gemini_api_input():
 # input_tabs, output_tabs, 
 
 def main():
+  page_config()
   # App title
   st.title('MI2S: Multimodal Image-2-Stories using Gemini-AI')
   st.divider()
