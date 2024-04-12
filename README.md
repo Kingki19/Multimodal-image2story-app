@@ -2,13 +2,14 @@
 ![MI2S Logo](https://github.com/Kingki19/Multimodal-image2story-app/blob/main/images/MI2S%20logo.png)  
 *Logo image from: [https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3](https://ideogram.ai/g/O8Jujvj3T5C4wftcDOgS8A/3)*
 
-### Why was this application created?
-1. [Hackaton Google AI challenges](https://googleai.devpost.com/)  
-Build a creative app that uses Google’s Generative AI tools. Push the boundaries of what Gen AI apps can do with Gemini! 
-2. A wish since teenage  
-Since I was a teenager, I have really admired art. I prefer drawing art to written art. Even though I'm not good at drawing now, I already have art fundamentals that I've been building for 2-3 years. I can imagine a story but only through pictures. Thanks to current technological developments that have produced AI that can produce images. I can already produce images based on imagination (prompt text that I input into the model, text2image).
-3. Current technologies  
-The presence of the latest technology such as multimodal models such as Gemini-AI provides unlimited possibilities. This makes it possible for any idea I might have had to be realized. The idea of using multimodal models to generate stories based on image input without needing to create a special model to generate stories from images.
+### Motivation Behind Creating this Application
+1. **Hackathon Inspiration**:  
+The genesis of this application stems from the challenges posed by the [Google AI Hackathon](https://googleai.devpost.com/). The goal was to craft an innovative app leveraging Google's Generative AI tools, particularly focusing on pushing the boundaries of what Gen AI apps can achieve with Gemini.
+2. **Long-Held Desire**:  
+Since my teenage years, I've held a deep admiration for artistry, especially in the form of visual art. Despite not currently excelling in drawing, I've spent 2-3 years cultivating fundamental art skills. While I can visualize stories, my preferred medium is through visual representations. The evolution of technology, notably AI capable of generating images based on prompts (text-to-image), has allowed me to materialize my imaginative narratives.
+3. **Embracing Current Tech**:  
+The advent of cutting-edge technologies such as multimodal models like Gemini-AI opens up boundless avenues. It empowers me to translate any creative idea into reality. The concept revolves around using multimodal models to craft narratives triggered by image inputs, eliminating the need for a bespoke model for image-to-story generation.
+
 
 ### App Description
 MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
