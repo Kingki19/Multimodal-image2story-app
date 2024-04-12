@@ -54,11 +54,13 @@ def tab_input():
         # Columns for image
         col_image_upload, col_image_show = st.columns(2)
         with col_image_upload:
-                uploaded_image = st.file_uploader("Choose image file", accept_multiple_files=False)
+                uploaded_image = st.file_uploader("Choose image file", 
+                                                  type=["jpg", "jpeg", "png"], 
+                                                  help='Only accept these format: jpg, jpeg, png')
         with col_image_show:
                 if uploaded_image is not None:
                         st.write("filename:", uploaded_image.name)
-                        st.image(uploaded_image.name)
+                        st.image(uploaded_image, caption="Uploaded Image")
                 
                 
 def tab_story():
