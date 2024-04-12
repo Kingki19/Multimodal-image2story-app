@@ -62,7 +62,7 @@ def tab_input():
                         st.write("filename:", uploaded_image.name)
                         st.image(uploaded_image, 
                                  caption="Uploaded Image", 
-                                 width=300)
+                                 use_column_width='auto')
                 
                 
 def tab_story():
