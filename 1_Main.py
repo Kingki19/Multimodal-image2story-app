@@ -12,7 +12,7 @@ def page_config():
         )
 
 def check_gemini_api_key(gemini_api_key):
-        ''' Function to check whether the API key was really exist
+        ''' Function to check whether the API key was really exist in Google
         This function especially made for `gemini_api_input()` below
         '''
         if len(gemini_api_key) != 0:
@@ -49,7 +49,7 @@ def if_key_in_session_state(funct):
 	''' function to check if key exist and pass another function
  	'''
 	if 'gemini_api_key' in st.session_state:
-		funct
+		funct()
 	else:
 		st.warning('There is no Gemini API Key in session state')
 
