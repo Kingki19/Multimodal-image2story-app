@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
 
+##### PAGE CONFIGURATION
 def page_config():
         ''' Function to manage page configuration
         '''
@@ -8,9 +9,10 @@ def page_config():
                 page_title="MI2S",
                 page_icon="📝",
                 layout="wide",
-                initial_sidebar_state="expanded"
+                initial_sidebar_state="auto"
         )
 
+##### GEMINI CONFIGURATION
 def check_gemini_api_key(gemini_api_key):
         ''' Function to check whether the API key was really exist in Google
         This function especially made for `gemini_api_input()` below
@@ -21,8 +23,7 @@ def check_gemini_api_key(gemini_api_key):
                         model = genai.GenerativeModel('gemini-pro')
                         response = model.generate_content("Hello")
                 except Exception as e:
-                        st.warning(e)
-                        
+                        st.warning(e)                        
 def gemini_api_input():
         ''' Function to input and manage Gemini-AI api key
         '''
@@ -45,6 +46,7 @@ def gemini_api_input():
         if api_key_valid and 'gemini_api_key' not in st.session_state:
         	st.session_state['gemini_api_key'] = input_gemini_api
 
+##### TABS CONFIGURATION
 def tab_input():
         ''' Function to create tab for input images and another element to generate story
         '''
@@ -82,6 +84,7 @@ def tab_chat():
         *under development*
         """)
 
+##### MAIN EXECUTION
 def main():
         ''' MAIN EXECUTION APPS IN HERE
         '''
