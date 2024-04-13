@@ -14,8 +14,7 @@ def page_config():
 
 ##### GEMINI CONFIGURATION
 def check_gemini_api_key(gemini_api_key):
-        ''' Function to check whether the API key was really exist in Google
-        This function especially made for `gemini_api_input()` below
+        ''' Function to check whether the API key was really exist in Google. This function especially made for `gemini_api_input()` below
         '''
         if len(gemini_api_key) != 0:
                 try:
@@ -45,6 +44,15 @@ def gemini_api_input():
         	api_key_valid = False
         if api_key_valid and 'gemini_api_key' not in st.session_state:
         	st.session_state['gemini_api_key'] = input_gemini_api
+
+##### MODEL CONFIGURATION
+### NOT FINISHED
+def model_gemini(input):
+        ''' Function to use model Gemini-AI to generate content
+        '''
+        genai.configure(api_key=gemini_api_key)
+        model = genai.GenerativeModel('gemini-pro')
+        response = model.generate_content("Hello")
 
 ##### TABS CONFIGURATION
 def tab_input():
