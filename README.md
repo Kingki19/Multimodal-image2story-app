@@ -9,31 +9,42 @@
     - [ ] Create tabs for input images
       - Make it repetitive and can generate story based on new image input and text-stories that already generated;
       - Input:
-        - Images input
-        - Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
-        - Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
-        - Image Type: e.g Character, backstory, moments, etc
-        - Total paragraph result: 1 to 3 paragraph
-        - Additional message (optional) 
+        - [x] Images input
+        - [ ] Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
+        - [ ] Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
+        - [ ] Image Type: e.g Character, backstory, moments, etc
+        - [ ] Total paragraph result: 1 to 3 paragraph
+        - [ ] Additional message (optional) 
     - [ ] Create tabs for stories
     - [ ] Create tabs for chat with stories
   - [ ] (2) Create documentation
+    - [ ] How to use it
+    - [ ] Graph how it works
   - [ ] (3) Create About
+    - [ ] App description
+    - [ ] Teams
+    - [ ] Contact Dev (if there's bug)
 
 ### Motivation Behind Creating this Application
-1. **Hackathon Inspiration**:  
-The genesis of this application stems from the challenges posed by the [Google AI Hackathon](https://googleai.devpost.com/). The goal was to craft an innovative app leveraging Google's Generative AI tools, particularly focusing on pushing the boundaries of what Gen AI apps can achieve with Gemini.
-2. **Long-Held Desire**:  
-Since my teenage years, I've held a deep admiration for artistry, especially in the form of visual art. Despite not currently excelling in drawing, I've spent 2-3 years cultivating fundamental art skills. While I can visualize stories, my preferred medium is through visual representations. The evolution of technology, notably AI capable of generating images based on prompts (text-to-image), has allowed me to materialize my imaginative narratives.
-3. **Embracing Current Tech**:  
-The advent of cutting-edge technologies such as multimodal models like Gemini-AI opens up boundless avenues. It empowers me to translate any creative idea into reality. The concept revolves around using multimodal models to craft narratives triggered by image inputs, eliminating the need for a bespoke model for image-to-story generation.
+1. **Hackathon Inspiration**:
+   This app was born from the challenges presented at the [Google AI Hackathon](https://googleai.devpost.com/). The aim was to create a cutting-edge app using Google's Generative AI tools, specifically focusing on pushing the boundaries of what Gen AI apps can do with Gemini.
+
+2. **Long-Held Passion**:
+   Since my teenage years, I've had a deep love for art, especially visual art. Although I'm not currently skilled in drawing, I've spent 2-3 years honing my basic art skills. While I can imagine stories, I prefer expressing them visually. With advancements in technology, like AI that can generate images from text prompts (text-to-image), I can now bring my creative narratives to life.
+
+3. **Embracing New Tech**:
+   The rise of advanced technologies such as multimodal models like Gemini-AI opens up endless possibilities. It enables me to turn any creative concept into reality. The idea is to use multimodal models to create stories inspired by images, removing the need for a custom model for image-to-story creation.
+
 
 
 ### App Description
 MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
 
-### Link app
+### Related Link
 - App: [https://multimodal-image2story-app-9kvsmmqfjyyrbzs3nlza9e.streamlit.app/](https://multimodal-image2story-app-9kvsmmqfjyyrbzs3nlza9e.streamlit.app/)
+  *I will change link name later after i finish it.*
+- Video: *later*
+- Devpost Project: *later*
 
 ### Technologies
 1. Python
@@ -50,4 +61,9 @@ MI2S (Multimodal Image2Stories) is an innovative application designed to transfo
 3. [LLaVA: Large Language and Vision Assistant](https://llava-vl.github.io/) (Journal & Github Repo)
 4. [Photo story apps](https://boredhumans.com/photo_story.php) (Website apps)
 
+My team:
+1. Muhammad Rizqi: me, develop it alone. I take responsible why my code is dirty.
+2. Muhammad Azka Nabhan Sauqi: he help me make a video about this app
+
 > Damn, i do this all alone. I hope it's works as expected. It's easy to finish project if i handle it myself.
+> I code directly in Github because my laptop suck. That's why you'll find lot of commit in this repo. 
