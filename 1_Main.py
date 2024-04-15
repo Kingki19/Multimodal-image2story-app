@@ -1,10 +1,9 @@
 import streamlit as st
 import google.generativeai as genai
 
-##### PAGE CONFIGURATION
+##### PAGE CONFIGURATION #####
 def page_config():
-        ''' Function to manage page configuration
-        '''
+        ''' Function to manage page configuration'''
         st.set_page_config(
                 page_title="MI2S",
                 page_icon="📝",
@@ -12,9 +11,11 @@ def page_config():
                 initial_sidebar_state="auto"
         )
 
-##### GEMINI CONFIGURATION
+##### GEMINI CONFIGURATION #####
 def check_gemini_api_key(gemini_api_key):
-        ''' Function to check whether the API key was really exist in Google. This function especially made for `gemini_api_input()` below
+        ''' 
+        Function to check whether the API key was really exist in Google. 
+        This function especially made for `gemini_api_input()` below
         '''
         if len(gemini_api_key) != 0:
                 try:
@@ -24,8 +25,7 @@ def check_gemini_api_key(gemini_api_key):
                 except Exception as e:
                         st.warning(e)                        
 def gemini_api_input():
-        ''' Function to input and manage Gemini-AI api key
-        '''
+        ''' Function to input and manage Gemini-AI api key'''
         # Input API key for Gemini API
         input_gemini_api = st.text_input(
                 label='Gemini-AI API key',
@@ -45,37 +45,66 @@ def gemini_api_input():
         if api_key_valid and 'gemini_api_key' not in st.session_state:
         	st.session_state['gemini_api_key'] = input_gemini_api
 
-##### MODEL CONFIGURATION
+##### MODEL CONFIGURATION #####
 ### NOT FINISHED
 def model_gemini(input):
-        ''' Function to use model Gemini-AI to generate content
-        '''
+        ''' Function to use model Gemini-AI to generate content'''
         genai.configure(api_key=gemini_api_key)
         model = genai.GenerativeModel('gemini-pro')
         response = model.generate_content("Hello")
 
-##### TABS CONFIGURATION
-def tab_input():
-        ''' Function to create tab for input images and another element to generate story
-        '''
-        st.subheader('Input Image and Elements')
-        st.markdown('> For right now, only limited to one image per upload')
-        
+##### TABS CONFIGURATION #####
+def input_image_col():
+        '''Create input column for image and show the image'''
+        # Initiate session state
+        if 'uploaded_image' not in st.session_state:
+                st.session_state['uploaded_image'] = None
+                st.session_state['image_uploaded'] = False
+                
         # Columns for image
+        st.markdown('> For right now, only limited to one image per upload')
         col_image_upload, col_image_show = st.columns(2)
+        
         with col_image_upload:
                 uploaded_image = st.file_uploader("Choose image file", 
                                                   type=["jpg", "jpeg", "png"], 
                                                   help='Only accept one image')
+                if uploaded_image is not None:
+                        # Simpan gambar ke dalam session state
+                        st.session_state.uploaded_image = uploaded_image
+                        st.session_state.image_uploaded = True
         with col_image_show:
+                # If image is uploaded
                 if uploaded_image is not None:
                         st.write("filename:", uploaded_image.name)
                         st.image(uploaded_image, 
                                  caption="Uploaded Image", 
                                  use_column_width='auto')
+        # I SAVE THIS BECAUSE SHOW WHAT IS NEED TO 
+        # if st.button("Execute"):
+        #         # Lakukan eksekusi sesuai dengan tombol tertentu
                 
-        st.write('test')
+        #         # Reset session state untuk menghapus gambar
+        #         st.session_state.uploaded_image = None
+        #         st.session_state.image_uploaded = False
+                
+                        
+def tab_input():
+        ''' Function to create tab for input images and another element to generate story'''
+        st.subheader('Input Image and Elements')
+        input_image_col()
         
+        
+        # Add button to execute action in the input tab
+        if st.session_state.image_uploaded:
+                if st.button("Generate a story"):
+                        # Lakukan eksekusi sesuai dengan tombol tertentu
+                        
+                        # Reset session state untuk menghapus gambar
+                        st.session_state.uploaded_image = None
+                        st.session_state.image_uploaded = False
+        
+##### TABS STORY
 def tab_story():
         ''' Function to create tab for story output
         '''
