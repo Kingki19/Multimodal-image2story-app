@@ -1,7 +1,7 @@
 import streamlit as st
 
 def how_to_use():
-        
+        st.write('test')
 def main():
         st.title('MI2S Documentation')
         st.divider()
