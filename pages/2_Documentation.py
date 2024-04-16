@@ -9,3 +9,5 @@ def main():
         st.divider()
         st.header('graph input-process-output')
         st.divider()
+
+main()
