@@ -138,7 +138,7 @@ def main():
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
         with st.container(border=True):
-                GeminiAPIManager.gemini_api_input()
+                GeminiAPIManager().gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
         with tab1: tab_input()
         with tab2: tab_story()
