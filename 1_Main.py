@@ -55,7 +55,7 @@ def model_gemini(input):
         response = model.generate_content("Hello")
 
 ##### TABS CONFIGURATION #####
-class Tab_Image():
+class Tab_Input():
         def input_image_col():
                 '''Create input column for image and show the image'''
                 # Initiate session state
