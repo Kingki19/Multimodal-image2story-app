@@ -77,8 +77,8 @@ class TabInput:
                                 st.session_state.image_uploaded = True
                 with col_image_show:
                         # If image is uploaded
-                        if  st.session_state.uploaded_image is not None:
-                                st.image(uploaded_image, 
+                        if st.session_state.uploaded_image is not None:
+                                st.image(st.session_state.uploaded_image, 
                                          caption="Uploaded Image", 
                                          use_column_width='auto')
                 # I SAVE THIS BECAUSE SHOW WHAT IS NEED TO 
