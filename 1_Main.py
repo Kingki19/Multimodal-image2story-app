@@ -77,7 +77,7 @@ class TabInput:
                                 st.session_state.image_uploaded = True
                 with col_image_show:
                         # If image is uploaded
-                        if uploaded_image is not None:
+                        if  st.session_state.uploaded_image is not None:
                                 st.write("filename:", uploaded_image.name)
                                 st.image(uploaded_image, 
                                          caption="Uploaded Image", 
