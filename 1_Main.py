@@ -12,7 +12,7 @@ def page_config():
         )
 
 ##### GEMINI CONFIGURATION #####
-class Gemini_API_Manager:
+class GeminiAPIManager:
         def check_gemini_api_key(self, gemini_api_key):
                 ''' 
                 Function to check whether the API key was really exist in Google. 
@@ -55,7 +55,7 @@ def model_gemini(input):
         response = model.generate_content("Hello")
 
 ##### TABS CONFIGURATION #####
-class Tab_Input:
+class TabInput:
         def input_image_col(self):
                 '''Create input column for image and show the image'''
                 # Initiate session state
@@ -106,7 +106,7 @@ class Tab_Input:
                                 st.session_state.uploaded_image = None
                                 st.session_state.image_uploaded = False
 
-class Tab_Story:
+class TabStory:
         def create_tab_story(self):
                 ''' Function to create tab for story output
                 '''
@@ -115,7 +115,7 @@ class Tab_Story:
                 *under development*
                 """)
 
-class Tab_Chat: 
+class TabChat: 
         def create_tab_chat(self):
                 ''' Function to create tab for chat with story
                 '''
@@ -140,11 +140,11 @@ def main():
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
         with st.container(border=True):
-                Gemini_API_Manager().gemini_api_input()
+                GeminiAPIManager().gemini_api_input()
         tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
-        with tab1: Tab_Input().create_tab_input()
-        with tab2: Tab_Story().create_tab_story()
-        with tab3: Tab_Chat().create_tab_chat()
+        with tab1: TabInput().create_tab_input()
+        with tab2: TabStory().create_tab_story()
+        with tab3: TabChat().create_tab_chat()
 
 # Execute main
 main()
