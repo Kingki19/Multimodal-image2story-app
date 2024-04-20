@@ -64,7 +64,7 @@ class TabInput:
                         st.session_state['image_uploaded'] = False
                         
                 # Columns for image
-                st.markdown('> For right now, only limited to one image per upload')
+                st.markdown('> After you input image, please press \'x\'. I cannot add feature to delete image in input after story is generated.')
                 col_image_upload, col_image_show = st.columns(2)
                 
                 with col_image_upload:
