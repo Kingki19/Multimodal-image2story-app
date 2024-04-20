@@ -78,7 +78,6 @@ class TabInput:
                 with col_image_show:
                         # If image is uploaded
                         if  st.session_state.uploaded_image is not None:
-                                st.write("filename:", uploaded_image.name)
                                 st.image(uploaded_image, 
                                          caption="Uploaded Image", 
                                          use_column_width='auto')
