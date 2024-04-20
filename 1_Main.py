@@ -56,7 +56,7 @@ def model_gemini(input):
 
 ##### TABS CONFIGURATION #####
 class Tab_Input:
-        def input_image_col():
+        def input_image_col(self):
                 '''Create input column for image and show the image'''
                 # Initiate session state
                 if 'uploaded_image' not in st.session_state:
@@ -91,7 +91,7 @@ class Tab_Input:
                 #         st.session_state.image_uploaded = False
                 
                         
-        def create_tab_input():
+        def create_tab_input(self):
                 ''' Function to create tab for input images and another element to generate story'''
                 st.subheader('Input Image and Elements')
                 self.input_image_col()
@@ -107,7 +107,7 @@ class Tab_Input:
                                 st.session_state.image_uploaded = False
 
 class Tab_Story:
-        def create_tab_story():
+        def create_tab_story(self):
                 ''' Function to create tab for story output
                 '''
                 st.subheader('Story Output')
@@ -116,7 +116,7 @@ class Tab_Story:
                 """)
 
 class Tab_Chat: 
-        def create_tab_chat():
+        def create_tab_chat(self):
                 ''' Function to create tab for chat with story
                 '''
                 st.subheader('Chat with story')
