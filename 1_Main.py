@@ -89,19 +89,22 @@ class TabInput:
                 #         # Reset session state untuk menghapus gambar
                 #         st.session_state.uploaded_image = None
                 #         st.session_state.image_uploaded = False
+        def input_writing_style(self)"
+                '''It's just add writing style'''
                 
-                        
+                
         def create_tab_input(self):
                 ''' Function to create tab for input images and another element to generate story'''
                 st.subheader('Input Image and Elements')
+
+                # Input
                 self.input_image_col()
-                
                 
                 # Add button to execute action in the input tab
                 if st.session_state.image_uploaded:
                         if st.button("Generate a story"):
                                 # Lakukan eksekusi sesuai dengan tombol tertentu
-                                
+                                st.write('Write a story')
                                 # Reset session state untuk menghapus gambar
                                 st.session_state.uploaded_image = None
                                 st.session_state.image_uploaded = False
