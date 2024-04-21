@@ -119,6 +119,7 @@ class TabInput:
                         writing_style_input = st.text_input(
                                 "Writing Style",
                                 placeholder = 'e.g Fantasy, Romance, Sci-fi, etc',
+                                help = "You can only input this once for each ongoing story",
                                 disabled = st.session_state.disabled
                         )
                 else:
@@ -140,6 +141,7 @@ class TabInput:
                         story_theme_input = st.text_input(
                                 "Story Theme",
                                 placeholder = "e.g Good vs Evil, beauty, loyalty, friendship",
+                                help = "You can only input this once for each ongoing story",
                                 disabled = st.session_state.disabled
                         )
                 else:
