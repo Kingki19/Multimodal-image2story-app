@@ -191,6 +191,7 @@ class TabInput:
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
                         st.session_state.image_uploaded = False
+                        st.session_state.disabled = True
                         # Rerun app
                         st.rerun()
         
