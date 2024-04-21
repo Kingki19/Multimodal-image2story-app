@@ -115,7 +115,7 @@ class TabInput:
                 if st.session_state.disabled == False:
                         writing_style_input = st.text_input(
                                 "Writing Style",
-                                placeholder = 'e.g: Fantasy, Romance, Sci-fi, etc',
+                                placeholder = 'e.g Fantasy, Romance, Sci-fi, etc',
                                 disabled = st.session_state.disabled
                         )
                 else:
