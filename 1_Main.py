@@ -177,7 +177,7 @@ class TabInput:
 
         def generate_story_button(self):
                 '''Button to run model to generate story'''
-                if st.button("Generate a story", disabled=st.session_state.disabled_generate_button):
+                if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
                         st.write('Write a story')
                         st.write(f'Writing Style: {st.session_state.writing_style}')
