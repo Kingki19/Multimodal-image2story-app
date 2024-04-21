@@ -10,8 +10,8 @@
       - Make it repetitive and can generate story based on new image input and text-stories that already generated;
       - Input:
         - [x] Images input
-        - [ ] Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
-        - [ ] Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
+        - [x] Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
+        - [x] Story Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
         - [ ] Image Type: e.g Character, backstory, moments, etc
         - [ ] Total paragraph result: 1 to 3 paragraph
         - [ ] Additional message (optional) 
