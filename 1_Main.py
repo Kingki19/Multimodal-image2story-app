@@ -138,6 +138,19 @@ class TabInput:
                 if story_theme_input is not None: # add it to global variable
                         st.session_state.story_theme = story_theme_input
 
+        def generate_story_button(self):
+                '''Button to run model to generate story'''
+                if st.button("Generate a story"):
+                                # Execute some code here, right now for debug
+                                st.write('Write a story')
+                                st.write(f'Writing Style: {st.session_state.writing_style}')
+                                st.session_state.iteration += 1
+                                # Reset session to delete images
+                                st.session_state.uploaded_image = None
+                                st.session_state.image_uploaded = False
+                                # Rerun app
+                                st.rerun()
+        
         def create_tab_input(self):
                 '''Tab for input images and another element to generate story
                 '''
@@ -151,14 +164,7 @@ class TabInput:
                 with col_theme: self.input_story_theme()
                 # Add button to execute action in the input tab
                 if st.session_state.image_uploaded:
-                        if st.button("Generate a story"):
-                                # Lakukan eksekusi sesuai dengan tombol tertentu
-                                st.write('Write a story')
-                                st.write(f'Writing Style: {st.session_state.writing_style}')
-                                st.session_state.iteration += 1
-                                # Reset session state untuk menghapus gambar
-                                st.session_state.uploaded_image = None
-                                st.session_state.image_uploaded = False
+                        self.generate_story_button()
 
 class TabStory:
         def create_tab_story(self):
