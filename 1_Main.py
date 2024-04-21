@@ -148,7 +148,7 @@ class TabInput:
                 self.input_image_col()
                 col_writing_style, col_theme = st.columns(2)
                 with col_writing_style: self.input_writing_style()
-                with col_theme: self
+                with col_theme: self.input_story_theme()
                 # Add button to execute action in the input tab
                 if st.session_state.image_uploaded:
                         if st.button("Generate a story"):
