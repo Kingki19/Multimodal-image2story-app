@@ -56,21 +56,31 @@ def model_gemini(input):
 
 ##### TABS CONFIGURATION #####
 class TabInput:
+        def count_iteration(self):
+                '''Just help how many user generate for each iteration'''
+                if 'iteration' not in st.session_state:
+                        st.session_state.iteration = 0
+                        st.session_state.disabled = False
+                if st.session_state.iteration > 0:
+                        st.session_state.disabled = True
+                st.markdown(f'You have generate story: {st.session_state.iteration}')
+        
         def input_image_col(self):
                 '''Create input column for image and show the image'''
                 # Initiate session state
                 if 'uploaded_image' not in st.session_state:
-                        st.session_state['uploaded_image'] = None
-                        st.session_state['image_uploaded'] = False
+                        st.session_state.uploaded_image = None
+                        st.session_state.image_uploaded = False
                         
                 # Columns for image
-                st.markdown('> After you input image, please press \'x\'. I cannot add feature to delete image in input after story is generated.')
+                st.markdown('> After you input image, please press \'x\' in input. I cannot add feature to delete image in input after story is generated based on current image.')
                 col_image_upload, col_image_show = st.columns(2)
                 
                 with col_image_upload:
                         uploaded_image = st.file_uploader("Choose image file", 
                                                           type=["jpg", "jpeg", "png"], 
-                                                          help='Only accept one image')
+                                                          help='Only accept one image'
+                                                         )
                         if uploaded_image is not None:
                                 # Simpan gambar ke dalam session state
                                 st.session_state.uploaded_image = uploaded_image
@@ -80,7 +90,8 @@ class TabInput:
                         if st.session_state.uploaded_image is not None:
                                 st.image(st.session_state.uploaded_image, 
                                          caption="Uploaded Image", 
-                                         use_column_width='auto')
+                                         use_column_width='auto'
+                                        )
                 # I SAVE THIS BECAUSE SHOW WHAT IS NEED TO 
                 # if st.button("Execute"):
                 #         # Lakukan eksekusi sesuai dengan tombol tertentu
@@ -90,32 +101,61 @@ class TabInput:
                 #         st.session_state.image_uploaded = False
         
         def input_writing_style(self):
-                '''It's just add writing style'''
+                '''Add writing style to story'''
                 # Initiate
                 if 'writing_style' not in st.session_state:
-                        st.session_state['writing_style'] = None
+                        st.session_state.writing_style = None
                 # Add
-                writing_style_input = st.text_input("Writing Style",
-                                                    placeholder = 'e.g: Fantasy, Romance, Sci-fi, etc'
-                                                   )
-                if writing_style_input is not None:
+                if st.session_state.disabled == False:
+                        writing_style_input = st.text_input("Writing Style",
+                                                            placeholder = 'e.g: Fantasy, Romance, Sci-fi, etc',
+                                                            disabled = st.session_state.disabled
+                                                           )
+                else:
+                        writing_style_input = st.text_input("Writing Style",
+                                                            placeholder = f"{st.session_state.writing_style}",
+                                                            disabled = st.session_state.disabled
+                                                           )
+                if writing_style_input is not None: # add it to global variable
                         st.session_state.writing_style = writing_style_input
+        
+        def input_story_theme(self):
+                '''add theme to story'''
+                # initiate
+                if 'story_theme' not in st.session_state:
+                        st.session_state.story_theme = None
+                # add
+                if st.session_state.disabled == False:
+                        story_theme_input = st.text_inpt("Story Theme",
+                                                         placeholder = "e.g Good vs Evil, beauty, loyalty, friendship",
+                                                         disabled = st.session_state.disabled
+                                                        )
+                else:
+                        story_theme_input = st.text_inpt("Story Theme",
+                                                         placeholder = f"{st.session_state.story_theme}",
+                                                         disabled = st.session_state.disabled
+                                                        )
+                if story_theme_input is not None: # add it to global variable
+                        st.session_state.story_theme = story_theme_input
 
         def create_tab_input(self):
-                ''' Function to create tab for input images and another element to generate story'''
-                st.subheader('Input Image and Elements')
-
+                '''Tab for input images and another element to generate story
+                '''
+                col_subheader_input, col_iteration = st.columns(2)
+                with col_subheader_input: st.subheader('Input Image and Elements')
+                with col_iteration: self.count_iteration()
                 # Input
                 self.input_image_col()
-                self.input_writing_style()
-                
+                col_writing_style, col_theme = st.columns(2)
+                with col_writing_style: self.input_writing_style()
+                with col_theme: self
                 # Add button to execute action in the input tab
                 if st.session_state.image_uploaded:
                         if st.button("Generate a story"):
                                 # Lakukan eksekusi sesuai dengan tombol tertentu
                                 st.write('Write a story')
                                 st.write(f'Writing Style: {st.session_state.writing_style}')
-                                
+                                st.session_state.iteration += 1
                                 # Reset session state untuk menghapus gambar
                                 st.session_state.uploaded_image = None
                                 st.session_state.image_uploaded = False
