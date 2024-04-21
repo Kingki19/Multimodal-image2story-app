@@ -126,7 +126,7 @@ class TabInput:
                         st.session_state.story_theme = None
                 # add
                 if st.session_state.disabled == False:
-                        story_theme_input = st.text_inpt("Story Theme",
+                        story_theme_input = st.text_input("Story Theme",
                                                          placeholder = "e.g Good vs Evil, beauty, loyalty, friendship",
                                                          disabled = st.session_state.disabled
                                                         )
