@@ -87,7 +87,7 @@ class TabInput:
                                 # Simpan gambar ke dalam session state
                                 st.session_state.uploaded_image = uploaded_image
                                 st.session_state.image_uploaded = True
-                                 st.session_state.disabled_generate_button = False
+                                st.session_state.disabled_generate_button = False
                                 
                 with col_image_show:
                         # If image is uploaded
