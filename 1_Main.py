@@ -71,6 +71,7 @@ class TabInput:
                 if 'uploaded_image' not in st.session_state:
                         st.session_state.uploaded_image = None
                         st.session_state.image_uploaded = False
+                if 'disabled_generate_button' not in st.session_state:
                         st.session_state.disabled_generate_button = True
                         
                 # Columns for image
