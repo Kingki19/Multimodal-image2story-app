@@ -131,7 +131,7 @@ class TabInput:
                                                          disabled = st.session_state.disabled
                                                         )
                 else:
-                        story_theme_input = st.text_inpt("Story Theme",
+                        story_theme_input = st.text_input("Story Theme",
                                                          placeholder = f"{st.session_state.story_theme}",
                                                          disabled = st.session_state.disabled
                                                         )
