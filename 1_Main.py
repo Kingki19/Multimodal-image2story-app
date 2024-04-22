@@ -237,6 +237,8 @@ class TabInput:
                 
         def generate_story_button(self) -> None:
                 '''Button to run model to generate story'''
+                if 'generate_button_clicked' not in st.session_state:
+                        st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
                         
@@ -245,6 +247,7 @@ class TabInput:
                         st.session_state.uploaded_image = None
                         st.session_state.image_uploaded = False
                         st.session_state.disabled = True
+                        st.session_state.generate_button_clicked = True
                         # Rerun app
                         st.rerun()
         
@@ -270,7 +273,13 @@ class TabInput:
                 self.input_add_message() # Add additional message
                 
                 # Add button to execute action in the input tab
-                self.generate_story_button()
+                col_generate_button, col_button_clicked = st.columns(2)
+                with col_generate_button: self.generate_story_button()
+                with col_button_clicked:
+                        # Tell user to go to another tab after the story was generated
+                        if st.session_state.generate_button_clicked == True:
+                                st.markdown('You have generate story, please go to `story` tab')
+                                st.session_state.generate_button_clicked = False
                       
 class TabStory:
         def create_tab_story(self) -> None:
