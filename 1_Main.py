@@ -216,11 +216,11 @@ class TabInput:
                         
                 # Add button to execute action in the input tab
                 # if st.session_state.image_uploaded: 
-                self.generate_story_button()
                 st.write('Write a story')
                 st.write(f'Writing Style: {st.session_state.writing_style}')
-                st.write(f'Story Theme: {st.session_state.story_theme}')        
-
+                st.write(f'Story Theme: {st.session_state.story_theme}') 
+                self.generate_story_button()
+                      
 class TabStory:
         def create_tab_story(self):
                 ''' Function to create tab for story output
