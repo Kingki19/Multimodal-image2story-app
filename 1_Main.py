@@ -1,8 +1,9 @@
 import streamlit as st
 import google.generativeai as genai
+from PIL import Image
 
 ##### PAGE CONFIGURATION #####
-def page_config():
+def page_config() -> None:
         ''' Function to manage page configuration'''
         st.set_page_config(
                 page_title="MI2S",
@@ -13,7 +14,7 @@ def page_config():
 
 ##### GEMINI CONFIGURATION #####
 class GeminiAPIManager:
-        def check_gemini_api_key(self, gemini_api_key):
+        def check_gemini_api_key(self, gemini_api_key: str) -> None:
                 ''' 
                 Function to check whether the API key was really exist in Google. 
                 This function especially made for `gemini_api_input()` below
@@ -25,7 +26,7 @@ class GeminiAPIManager:
                                 response = model.generate_content("Hello")
                         except Exception as e:
                                 st.warning(e)                        
-        def gemini_api_input(self):
+        def gemini_api_input(self) -> None:
                 ''' Function to input and manage Gemini-AI api key'''
                 # Input API key for Gemini API
                 input_gemini_api = st.text_input(
@@ -48,7 +49,15 @@ class GeminiAPIManager:
 
 ##### MODEL CONFIGURATION
 class Model:
-        def prompt(self):
+        ''' This whole object class was followed by this documentation: 
+        (if something error whenever it call the model, i or YOU can help to fix it using following link below)
+        - Get Started with Gemini using Python: https://ai.google.dev/gemini-api/docs/get-started/python
+        - Configure the generative model: https://ai.google.dev/api/python/google/generativeai/GenerativeModel
+        - All viable Gemini model: https://ai.google.dev/api/python/google/generativeai/list_models
+        
+        THANKS FOR GOOGLE that give me chance of money freedom for research using Gemini-AI API while making this app.
+        '''
+        def prompt(self) -> None:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_result' not in st.session_state:
                         st.session_state.story_result = ''
@@ -70,10 +79,14 @@ class Model:
                 """
                 st.session_state.model_prompt = input_prompt
                 
-        def generate_story_from_image(self, input):
+        def generate_story_from_image(self, input_image) -> None:
                 '''User generate story using model and input image'''
                 genai.configure(api_key=gemini_api_key)
-                model = genai.GenerativeModel('gemini-pro')
+                '''
+                
+                '''
+                gemini_version = 'gemini-1.5-pro-latest'
+                model = genai.GenerativeModel(gemini_version)
                 response = model.generate_content("Hello")
 
 ##### TABS CONFIGURATION #####
@@ -109,9 +122,12 @@ class TabInput:
                                 type=["jpg", "jpeg", "png"], 
                                 help='Only accept one image'
                         )
+                        
                         if uploaded_image is not None:
-                                # Simpan gambar ke dalam session state
-                                st.session_state.uploaded_image = uploaded_image
+                                # Access image uploaded using Image from PIL (Pillow)
+                                image_PIL = Image.open(uploaded_image) 
+                                # Save image to session state
+                                st.session_state.uploaded_image = image_PIL
                                 st.session_state.image_uploaded = True
                                 st.session_state.disabled_generate_button = False
                                 
