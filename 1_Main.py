@@ -49,11 +49,11 @@ class GeminiAPIManager:
 
 ##### MODEL CONFIGURATION
 class Model:
-        ''' This whole object class was followed by this documentation: 
+        ''' This whole object class was build followed by this documentation: 
         (if something error whenever it call the model, i or YOU can help to fix it using following link below)
-        - Get Started with Gemini using Python: https://ai.google.dev/gemini-api/docs/get-started/python
-        - Configure the generative model: https://ai.google.dev/api/python/google/generativeai/GenerativeModel
-        - All viable Gemini model: https://ai.google.dev/api/python/google/generativeai/list_models
+        - Get Started with Gemini using Python:         https://ai.google.dev/gemini-api/docs/get-started/python
+        - Configure the generative model:        https://ai.google.dev/api/python/google/generativeai/GenerativeModel
+        - All types of Gemini models are available:         https://ai.google.dev/api/python/google/generativeai/list_models
         
         THANKS FOR GOOGLE that give me chance of money freedom for research using Gemini-AI API while making this app.
         '''
@@ -79,7 +79,7 @@ class Model:
                 """
                 st.session_state.model_prompt = input_prompt
                 
-        def generate_story_from_image(self, input_image) -> None:
+        def generate_story_from_image(self, input_image: Image.Image) -> None:
                 '''User generate story using model and input image'''
                 genai.configure(api_key=gemini_api_key)
                 '''
@@ -91,7 +91,7 @@ class Model:
 
 ##### TABS CONFIGURATION #####
 class TabInput:
-        def count_iteration(self):
+        def count_iteration(self) -> None:
                 '''Just help how many user generate for each iteration'''
                 if 'iteration' not in st.session_state:
                         st.session_state.iteration = 0
@@ -100,7 +100,7 @@ class TabInput:
                         st.session_state.disabled = True
                 st.markdown(f'You have generate story: {st.session_state.iteration}')
         
-        def input_image_col(self):
+        def input_image_col(self) -> None:
                 '''Create input column for image and show the image'''
                 # Initiate session state
                 if 'uploaded_image' not in st.session_state:
@@ -147,7 +147,7 @@ class TabInput:
                 #         st.session_state.uploaded_image = None
                 #         st.session_state.image_uploaded = False
         
-        def input_writing_style(self):
+        def input_writing_style(self) -> None:
                 '''Add writing style to story'''
                 # Initiate
                 if 'writing_style' not in st.session_state:
@@ -170,7 +170,7 @@ class TabInput:
                 if (writing_style_input is not None) and (st.session_state.iteration == 0): # add it to global variable
                         st.session_state.writing_style = writing_style_input
         
-        def input_story_theme(self):
+        def input_story_theme(self) -> None:
                 '''add theme to story'''
                 # initiate
                 if 'story_theme' not in st.session_state:
@@ -193,7 +193,7 @@ class TabInput:
                 if (story_theme_input is not None) and (st.session_state.iteration == 0): # add it to global variable
                         st.session_state.story_theme = story_theme_input
 
-        def input_image_type(self):
+        def input_image_type(self) -> None:
                 '''user input image type manually or make it blank'''
                 # initiate 
                 if 'image_type' not in st.session_state:
@@ -209,7 +209,7 @@ class TabInput:
                 
                 if st.session_state.image_type == '':
                         st.session_state.disabled_generate_button = True
-        def input_total_paragraph(self):
+        def input_total_paragraph(self) -> None:
                 '''user input total paragraph'''
                 # initiate
                 if 'total_paragraphs' not in st.session_state:
@@ -224,7 +224,7 @@ class TabInput:
                 )
                 st.session_state.total_paragraphs = total_par_input
 
-        def input_add_message(self):
+        def input_add_message(self) -> None:
                 '''User input additional message'''
                 if 'add_message' not in st.session_state:
                         st.session_state.add_message = None
@@ -235,7 +235,7 @@ class TabInput:
                 )
                 st.session_state.add_message = add_message_input
                 
-        def generate_story_button(self):
+        def generate_story_button(self) -> None:
                 '''Button to run model to generate story'''
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
@@ -248,7 +248,7 @@ class TabInput:
                         # Rerun app
                         st.rerun()
         
-        def create_tab_input(self):
+        def create_tab_input(self) -> None:
                 '''Tab for input images and another element to generate story
                 '''
                 col_subheader_input, col_iteration = st.columns(2)
@@ -273,7 +273,7 @@ class TabInput:
                 self.generate_story_button()
                       
 class TabStory:
-        def create_tab_story(self):
+        def create_tab_story(self) -> None:
                 ''' Function to create tab for story output
                 '''
                 st.subheader('Story Output')
@@ -282,7 +282,7 @@ class TabStory:
                 """)
 
 class TabChat: 
-        def create_tab_chat(self):
+        def create_tab_chat(self) -> None:
                 ''' Function to create tab for chat with story
                 '''
                 st.subheader('Chat with story')
