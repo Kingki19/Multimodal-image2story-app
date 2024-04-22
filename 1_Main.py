@@ -111,7 +111,7 @@ class TabInput:
                         
                 # Columns for image
                 st.markdown('''
-                        > After you generate story, please press \'x\' in input.  
+                        > After you generate story, please press `x` in image input option.  
                         > I cannot add feature to delete image in input after story is generated based on current image due to limitation on Streamlit Framework.
                         ''')
                 col_image_upload, col_image_show = st.columns(2)
