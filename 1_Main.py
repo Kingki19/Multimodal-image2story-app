@@ -128,7 +128,7 @@ class TabInput:
                                 placeholder = f"{st.session_state.writing_style}",
                                 disabled = st.session_state.disabled
                         )
-                if writing_style_input is not None: # add it to global variable
+                if (writing_style_input is not None) and (st.session_state.iteration == 0): # add it to global variable
                         st.session_state.writing_style = writing_style_input
         
         def input_story_theme(self):
@@ -150,7 +150,7 @@ class TabInput:
                                 placeholder = f"{st.session_state.story_theme}",
                                 disabled = st.session_state.disabled
                         )
-                if story_theme_input is not None: # add it to global variable
+                if (story_theme_input is not None) and (st.session_state.iteration == 0): # add it to global variable
                         st.session_state.story_theme = story_theme_input
 
         def input_image_type(self):
