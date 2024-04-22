@@ -41,11 +41,11 @@ class GeminiAPIManager:
                 ''')
                 api_key_valid = True
                 try:
-                	self.check_gemini_api_key(input_gemini_api)
+                        self.check_gemini_api_key(input_gemini_api)
                 except Exception:
-                	api_key_valid = False
+                        api_key_valid = False
                 if api_key_valid and 'gemini_api_key' not in st.session_state:
-                	st.session_state['gemini_api_key'] = input_gemini_api
+                        st.session_state['gemini_api_key'] = input_gemini_api
 
 ##### MODEL CONFIGURATION
 class Model:
@@ -59,14 +59,14 @@ class Model:
         '''
         def prompt(self) -> None:
                 '''Manage prompt that will used to input it to Gemini'''
-                if 'story_result' not in st.session_state:
-                        st.session_state.story_result = ''
+                if 'story_results' not in st.session_state:
+                        st.session_state.story_results = []
                 if 'model_prompt' not in st.session_state:
                         st.session_state.model_prompt = None
                 input_prompt = f"""
                 Hey, help me to generate a continuous story based on some image input.
                 For now, the following story is produced: 
-                {st.session_state.story_result}
+                {st.session_state.story_results}
                 You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
                 
                 Here are the rules you must adhere to when producing stories based on images:
