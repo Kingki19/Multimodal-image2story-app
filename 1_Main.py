@@ -223,7 +223,7 @@ class TabInput:
                 '''Button to run model to generate story'''
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
-                       
+                        Model().prompt()
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
