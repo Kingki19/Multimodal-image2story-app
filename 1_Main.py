@@ -167,7 +167,9 @@ class TabInput:
                         placeholder = "e.g character, backstory, moments, place, etc"
                         )
                 st.session_state.image_type = image_type_input
-
+                
+                if st.session_state.image_type == '':
+                        st.session_state.disabled_generate_button = True
         def input_total_paragraph(self):
                 '''user input total paragraph'''
                 # initiate
