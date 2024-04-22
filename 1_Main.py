@@ -187,6 +187,7 @@ class TabInput:
                         # Execute some code here, right now for debug
                         st.write('Write a story')
                         st.write(f'Writing Style: {st.session_state.writing_style}')
+                        st.write(f'Story Theme: {st.session_state.story_theme}')
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
