@@ -126,6 +126,7 @@ class TabInput:
                         writing_style_input = st.text_input(
                                 "Writing Style",
                                 placeholder = f"{st.session_state.writing_style}",
+                                help = "You can only input this once for each ongoing story",
                                 disabled = st.session_state.disabled
                         )
                 if (writing_style_input is not None) and (st.session_state.iteration == 0): # add it to global variable
@@ -148,6 +149,7 @@ class TabInput:
                         story_theme_input = st.text_input(
                                 "Story Theme",
                                 placeholder = f"{st.session_state.story_theme}",
+                                help = "You can only input this once for each ongoing story",
                                 disabled = st.session_state.disabled
                         )
                 if (story_theme_input is not None) and (st.session_state.iteration == 0): # add it to global variable
@@ -162,7 +164,7 @@ class TabInput:
                 image_type_input = st.text_input(
                         "Image Type",
                         value = "",
-                        placeholder = "e.g character, backstory, moments, war, etc"
+                        placeholder = "e.g character, backstory, moments, place, etc"
                         )
                 st.session_state.image_type = image_type_input
 
@@ -177,10 +179,21 @@ class TabInput:
                         min_value = 1,
                         max_value = 3,
                         value = 1,
-                        help = 'Based on your expectation'
+                        help = 'Based on your expectation, i give limit for each image to generate max 3 paragraph.'
                 )
                 st.session_state.total_paragraphs = total_par_input
 
+        def input_add_message(self):
+                '''User input additional message'''
+                if 'add_message' not in st.session_state:
+                        st.session_state.add_message = None
+                add_message_input = st.text_area(
+                        'Additional Message',
+                        help = 'Additional prompts that are not in the options',
+                        placeholder = 'giving a name or atmosphere or certain emotion to an image'
+                )
+                st.session_state.add_message = add_message_input
+                
         def generate_story_button(self):
                 '''Button to run model to generate story'''
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
@@ -213,7 +226,8 @@ class TabInput:
                 col_image_type, col_tot_par = st.columns(2)
                 with col_image_type: self.input_image_type()
                 with col_tot_par: self.input_total_paragraph()
-                        
+                self.input_add_message() # Add additional message
+                
                 # Add button to execute action in the input tab
                 # if st.session_state.image_uploaded: 
                 st.write('Write a story')
