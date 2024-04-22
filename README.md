@@ -6,15 +6,15 @@
 - [x] Create Gemini-AI API key access as variable and input
 - [ ] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
   - [ ] (1) Create Main apps [in progress]
-    - [ ] Create tabs for input images
+    - [x] Create tabs for input images
       - Make it repetitive and can generate story based on new image input and text-stories that already generated;
       - Input:
         - [x] Images input
         - [x] Writing style: e.g Fantasy, Romance, Sci-fi etc (If it first initialization)
         - [x] Story Theme: e.g Good vs Evil, beauty, loyalty, friendship, etc (If it first initialization)
-        - [ ] Image Type: e.g Character, backstory, moments, etc
-        - [ ] Total paragraph result: 1 to 3 paragraph
-        - [ ] Additional message (optional) 
+        - [x] Image Type: e.g Character, backstory, moments, etc
+        - [x] Total paragraph result: 1 to 3 paragraph
+        - [x] Additional message (optional) 
     - [ ] Create tabs for stories
     - [ ] Create tabs for chat with stories
   - [ ] (2) Create documentation
