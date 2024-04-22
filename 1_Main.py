@@ -46,13 +46,35 @@ class GeminiAPIManager:
                 if api_key_valid and 'gemini_api_key' not in st.session_state:
                 	st.session_state['gemini_api_key'] = input_gemini_api
 
-##### MODEL CONFIGURATION #####
-### NOT FINISHED
-def model_gemini(input):
-        ''' Function to use model Gemini-AI to generate content'''
-        genai.configure(api_key=gemini_api_key)
-        model = genai.GenerativeModel('gemini-pro')
-        response = model.generate_content("Hello")
+##### MODEL CONFIGURATION
+class Model:
+        def prompt(self):
+                '''Manage prompt that will used to input it to Gemini'''
+                if 'story_result' not in st.session_state:
+                        st.session_state.story_result = ''
+                if 'model_prompt' not in st.session_state:
+                        st.session_state.model_prompt = None
+                input_prompt = f"""
+                Hey, help me to generate a continuous story based on some image input.
+                For now, the following story is produced: 
+                {st.session_state.story_result}
+                You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
+                
+                Here are the rules you must adhere to when producing stories based on images:
+                - Writing Style: {st.session_state.writing_style}
+                - Story Theme: {st.session_state.story_theme}
+                - Image Type: {st.session_state.image_type}
+                - You need generate story exactly {st.session_state.total_paragraphs} paragraphs
+                - Here's additional message for you when generate the story:
+                {st.session_state.add_message}
+                """
+                st.session_state.model_prompt = input_prompt
+                
+        def generate_story_from_image(self, input):
+                '''User generate story using model and input image'''
+                genai.configure(api_key=gemini_api_key)
+                model = genai.GenerativeModel('gemini-pro')
+                response = model.generate_content("Hello")
 
 ##### TABS CONFIGURATION #####
 class TabInput:
@@ -164,6 +186,7 @@ class TabInput:
                 image_type_input = st.text_input(
                         "Image Type",
                         value = "",
+                        help = 'You must fill in this section',
                         placeholder = "e.g character, backstory, moments, place, etc"
                         )
                 st.session_state.image_type = image_type_input
@@ -231,10 +254,6 @@ class TabInput:
                 self.input_add_message() # Add additional message
                 
                 # Add button to execute action in the input tab
-                # if st.session_state.image_uploaded: 
-                st.write('Write a story')
-                st.write(f'Writing Style: {st.session_state.writing_style}')
-                st.write(f'Story Theme: {st.session_state.story_theme}') 
                 self.generate_story_button()
                       
 class TabStory:
@@ -255,6 +274,11 @@ class TabChat:
                 *under development*
                 """)
 
+class TabHistory:
+        def create_tab_history(self):
+                st.subheader('Prompt history for story generation')
+                st.write(st.session_state.model_prompt)
+
 ##### MAIN EXECUTION
 def main():
         ''' MAIN EXECUTION APPS IN HERE
@@ -271,10 +295,11 @@ def main():
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
         with st.container(border=True): GeminiAPIManager().gemini_api_input()
-        tab1, tab2, tab3 = st.tabs(["📥 Input", "📖 Story", "💬 Chat"])
+        tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
         with tab1: TabInput().create_tab_input()
         with tab2: TabStory().create_tab_story()
         with tab3: TabChat().create_tab_chat()
+        with tab4: TabHistory().create_tab_history()
 
 # Execute main
 main()
