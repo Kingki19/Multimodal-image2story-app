@@ -83,7 +83,7 @@ class Model:
                         For now, the following story is produced: 
                         {story_combined}
                         You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
-                        
+                        Make it readable for human.
                         Here are the rules you must adhere to when producing stories based on images:
                         - Writing Style: {st.session_state.writing_style}
                         - Story Theme: {st.session_state.story_theme}
@@ -106,7 +106,7 @@ class Model:
                 # Execute prompt function
                 self.prompt()
                 model = self.configuration()
-                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
+                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image], stream=True)
                 st.write(response)
                 # Return
                 st.session_state.story_results.append(response.text)
