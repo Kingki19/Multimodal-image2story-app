@@ -108,7 +108,8 @@ class Model:
                 model = self.configuration()
                 response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image], stream=True)
                 # Return
-                st.write(response)
+                for chunk in response:
+                        st.write(chunk.text)
                 st.session_state.story_results.append(response.text)
 
 ##### TABS CONFIGURATION #####
