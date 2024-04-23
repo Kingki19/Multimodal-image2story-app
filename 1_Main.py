@@ -88,7 +88,8 @@ class Model:
         def generate_story_from_image(self) -> None:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 genai.configure(api_key=st.session_state.gemini_api_key)
-                gemini_version = 'gemini-1.5-pro-latest'
+                # gemini_version = 'models/gemini-1.5-pro-latest'
+                gemini_version = 'models/gemini-pro-vision'
                 model = genai.GenerativeModel(gemini_version)
                 # Execute prompt function
                 self.prompt()
