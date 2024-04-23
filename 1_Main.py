@@ -29,7 +29,7 @@ class GeminiAPIManager:
                                 response = model.generate_content("Hello")
                         except Exception as e:
                                 st.warning(e)                        
-        def gemini_api_input(self) -> None:
+        def gemini_api_input(self) -> gemini_api_key: #It return API-key as string, i can't store it in st.session_state
                 ''' Function to input and manage Gemini-AI api key'''
                 # Input API key for Gemini API
                 input_gemini_api = st.text_input(
@@ -38,17 +38,23 @@ class GeminiAPIManager:
                         type='password',
                         help='required to use this application'
                 )
+                if len(input_gemini_api) == 0:
+                        st.info('Please input gemini API key before using this app')
+                        return None
                 st.markdown('''
                 Or if you don't have one, get your own Gemini-AI API key here:  
                 [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
                 ''')
                 api_key_valid = True
-                try:
+                try: # Check first 
                         self.check_gemini_api_key(input_gemini_api)
                 except Exception:
                         api_key_valid = False
-                if api_key_valid and 'gemini_api_key' not in st.session_state:
-                        st.session_state.gemini_api_key = input_gemini_api
+                if api_key_valid == True:
+                        return input_gemini_api
+                else: 
+                        st.error("Invalid Gemini API key. Please check and try again.")
+                        return None
 
 ##### MODEL CONFIGURATION
 class Model:
@@ -59,7 +65,11 @@ class Model:
         - All types of Gemini models are available: https://ai.google.dev/api/python/google/generativeai/list_models
         
         THANKS FOR GOOGLE that give me chance of money freedom for research using Gemini-AI API while making this app.
+        Error: I can't store gemini api key in st.session_state --> Fix: i store it in local variavble instead
         '''
+        def __init__(self, gemini_api_key):
+                self.gemini_api_key = gemini_api_key
+                
         def prompt(self) -> None:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_results' not in st.session_state:
@@ -84,17 +94,19 @@ class Model:
                 """
                 # Return
                 st.session_state.model_prompt = input_prompt
+        def configuration(self) -> model:
+                '''Configure the model and use it in multiple case'''
+                genai.configure(api_key=self.gemini_api_key)
+                gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
+                model = genai.GenerativeModel(gemini_version)
+                return model
                 
         def generate_story_from_image(self) -> None:
                 '''Generate story using input image, last stories (if exist), input other text'''
-                genai.configure(api_key=st.session_state.gemini_api_key)
-                # gemini_version = 'models/gemini-1.5-pro-latest'
-                gemini_version = 'models/gemini-pro-vision'
-                model = genai.GenerativeModel(gemini_version)
                 # Execute prompt function
                 self.prompt()
-                # response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
-                response = model.generate_content(st.session_state.model_prompt)
+                model = self.configuration()
+                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
                 # Return
                 temporary_result = st.session_state.story_results
                 temporary_result.append(response.text)
@@ -102,6 +114,9 @@ class Model:
 
 ##### TABS CONFIGURATION #####
 class TabInput:
+        def __init__(self, gemini_api_key):
+                self.gemini_api_key = gemini_api_key
+                
         def count_iteration(self) -> None:
                 '''Just help how many user generate for each iteration'''
                 if 'iteration' not in st.session_state:
@@ -252,7 +267,7 @@ class TabInput:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
-                        Model().generate_story_from_image()
+                        Model(self.gemini_api_key).generate_story_from_image()
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
@@ -333,9 +348,10 @@ def main():
         By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
-        with st.container(border=True): GeminiAPIManager().gemini_api_input()
+        with st.container(border=True): 
+                gemini_api_key = GeminiAPIManager().gemini_api_input()
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
-        with tab1: TabInput().create_tab_input()
+        with tab1: TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
         with tab3: TabChat().create_tab_chat()
         with tab4: TabHistory().create_tab_history()
