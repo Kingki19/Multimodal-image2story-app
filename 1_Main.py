@@ -29,7 +29,7 @@ class GeminiAPIManager:
                                 response = model.generate_content("Hello")
                         except Exception as e:
                                 st.warning(e)                        
-        def gemini_api_input(self) -> gemini_api_key: #It return API-key as string, i can't store it in st.session_state
+        def gemini_api_input(self) -> str: #It return API-key as string, i can't store it in st.session_state
                 ''' Function to input and manage Gemini-AI api key'''
                 # Input API key for Gemini API
                 input_gemini_api = st.text_input(
@@ -38,7 +38,7 @@ class GeminiAPIManager:
                         type='password',
                         help='required to use this application'
                 )
-                if len(input_gemini_api) == 0:
+                if input_gemini_api == '':
                         st.info('Please input gemini API key before using this app')
                         return None
                 st.markdown('''
@@ -94,7 +94,7 @@ class Model:
                 """
                 # Return
                 st.session_state.model_prompt = input_prompt
-        def configuration(self) -> model:
+        def configuration(self):
                 '''Configure the model and use it in multiple case'''
                 genai.configure(api_key=self.gemini_api_key)
                 gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
@@ -309,8 +309,7 @@ class TabInput:
                       
 class TabStory:
         def create_tab_story(self) -> None:
-                ''' Function to create tab for story output
-                '''
+                ''' Function to create tab for story output'''
                 st.subheader('Story Output')
                 if 'story_results' not in st.session_state:
                         st.info('There is no story generated yet')
@@ -350,6 +349,7 @@ def main():
         """)
         with st.container(border=True): 
                 gemini_api_key = GeminiAPIManager().gemini_api_input()
+                st.write(gemini_api_key)
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
         with tab1: TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
