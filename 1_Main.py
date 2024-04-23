@@ -327,9 +327,9 @@ class TabChat:
                 """)
 
 class TabHistory:
-        def create_tab_history(self):
+        def create_tab_history(self, gemini_api_key):
                 st.subheader('Prompt history for story generation')
-                Model().prompt()
+                Model(gemini_api_key).prompt()
                 st.write(st.session_state.model_prompt)
 
 ##### MAIN EXECUTION
@@ -354,7 +354,7 @@ def main():
         with tab1: TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
         with tab3: TabChat().create_tab_chat()
-        with tab4: TabHistory().create_tab_history()
+        with tab4: TabHistory().create_tab_history(gemini_api_key)
 
 # Execute main
 main()
