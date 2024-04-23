@@ -109,10 +109,6 @@ class Model:
                 response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
                 st.markdown(response.text)
                 # Return
-                # temporary_result = st.session_state.story_results
-                # temporary_result.append(response.text)
-                # st.session_state.story_results = temporary_result
-                
                 st.session_state.story_results.append(response.text)
 
 ##### TABS CONFIGURATION #####
