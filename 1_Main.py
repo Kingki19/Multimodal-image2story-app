@@ -107,9 +107,10 @@ class Model:
                 self.prompt()
                 model = self.configuration()
                 response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image], stream=True)
-                st.write(response)
                 # Return
-                st.session_state.story_results.append(response.text)
+                if response.done:
+                        st.write(response)
+                        st.session_state.story_results.append(response.text)
 
 ##### TABS CONFIGURATION #####
 class TabInput:
