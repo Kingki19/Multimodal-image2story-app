@@ -93,7 +93,8 @@ class Model:
                 model = genai.GenerativeModel(gemini_version)
                 # Execute prompt function
                 self.prompt()
-                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
+                # response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
+                response = model.generate_content(st.session_state.model_prompt)
                 # Return
                 temporary_result = st.session_state.story_results
                 temporary_result.append(response.text)
