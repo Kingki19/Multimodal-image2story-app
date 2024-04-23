@@ -11,6 +11,9 @@ def page_config() -> None:
                 layout="wide",
                 initial_sidebar_state="auto"
         )
+###### SESSION STATE MANAGEMENT #####
+# def global_variabel() -> None:
+        
 
 ##### GEMINI CONFIGURATION #####
 class GeminiAPIManager:
@@ -45,15 +48,15 @@ class GeminiAPIManager:
                 except Exception:
                         api_key_valid = False
                 if api_key_valid and 'gemini_api_key' not in st.session_state:
-                        st.session_state['gemini_api_key'] = input_gemini_api
+                        st.session_state.gemini_api_key = input_gemini_api
 
 ##### MODEL CONFIGURATION
 class Model:
         ''' This whole object class was build followed by this documentation: 
         (if something error whenever it call the model, i or YOU can help to fix it using following link below)
-        - Get Started with Gemini using Python:         https://ai.google.dev/gemini-api/docs/get-started/python
-        - Configure the generative model:        https://ai.google.dev/api/python/google/generativeai/GenerativeModel
-        - All types of Gemini models are available:         https://ai.google.dev/api/python/google/generativeai/list_models
+        - Get Started with Gemini using Python:     https://ai.google.dev/gemini-api/docs/get-started/python
+        - Configure the generative model:           https://ai.google.dev/api/python/google/generativeai/GenerativeModel
+        - All types of Gemini models are available: https://ai.google.dev/api/python/google/generativeai/list_models
         
         THANKS FOR GOOGLE that give me chance of money freedom for research using Gemini-AI API while making this app.
         '''
@@ -63,31 +66,35 @@ class Model:
                         st.session_state.story_results = []
                 if 'model_prompt' not in st.session_state:
                         st.session_state.model_prompt = None
+                # Combined all stories from a list into a string
+                story_combined = '\n\n'.join(st.session_state.story_results)
                 input_prompt = f"""
-                Hey, help me to generate a continuous story based on some image input.
-                For now, the following story is produced: 
-                {st.session_state.story_results}
-                You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
-                
-                Here are the rules you must adhere to when producing stories based on images:
-                - Writing Style: {st.session_state.writing_style}
-                - Story Theme: {st.session_state.story_theme}
-                - Image Type: {st.session_state.image_type}
-                - You need generate story exactly {st.session_state.total_paragraphs} paragraphs
-                - Here's additional message for you when generate the story:
-                {st.session_state.add_message}
+                        Hey, help me to generate a continuous story based on some image input.
+                        For now, the following story is produced: 
+                        {story_combined}
+                        You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
+                        
+                        Here are the rules you must adhere to when producing stories based on images:
+                        - Writing Style: {st.session_state.writing_style}
+                        - Story Theme: {st.session_state.story_theme}
+                        - Image Type: {st.session_state.image_type}
+                        - You need generate story exactly {st.session_state.total_paragraphs} paragraphs
+                        - Here's additional message for you when generate the story:
+                        {st.session_state.add_message}
                 """
+                # Return
                 st.session_state.model_prompt = input_prompt
                 
-        def generate_story_from_image(self, input_image: Image.Image) -> None:
-                '''User generate story using model and input image'''
-                genai.configure(api_key=gemini_api_key)
-                '''
-                
-                '''
+        def generate_story_from_image(self) -> None:
+                '''Generate story using input image, last stories (if exist), input other text'''
+                genai.configure(api_key=st.session_state.gemini_api_key)
                 gemini_version = 'gemini-1.5-pro-latest'
                 model = genai.GenerativeModel(gemini_version)
-                response = model.generate_content("Hello")
+                # Execute prompt function
+                self.prompt()
+                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image])
+                # Return
+                st.session_state.story_results.append(response.text)
 
 ##### TABS CONFIGURATION #####
 class TabInput:
@@ -241,7 +248,7 @@ class TabInput:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
-                        
+                        Model().generate_story_from_image()
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
@@ -278,7 +285,7 @@ class TabInput:
                 with col_button_clicked:
                         # Tell user to go to another tab after the story was generated
                         if st.session_state.generate_button_clicked == True:
-                                st.markdown('You have generate story, please go to `story` tab')
+                                st.success('You have generate story, please go to `story` tab')
                                 st.session_state.generate_button_clicked = False
                       
 class TabStory:
@@ -286,9 +293,11 @@ class TabStory:
                 ''' Function to create tab for story output
                 '''
                 st.subheader('Story Output')
-                st.markdown("""
-                *under development*
-                """)
+                if 'story_results' not in st.session_state:
+                        st.info('There is no story generated yet')
+                else:
+                        story_combined = '\n\n'.join(st.session_state.story_results)
+                        st.markdown(story_combined)
 
 class TabChat: 
         def create_tab_chat(self) -> None:
