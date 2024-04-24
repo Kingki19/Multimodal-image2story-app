@@ -40,11 +40,12 @@ class GeminiAPIManager:
                 )
                 if input_gemini_api == '':
                         st.info('Please input gemini API key before using this app')
-                        return None
                         st.markdown('''
                         Or if you don't have one, get your own Gemini-AI API key here:  
                         [https://aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
                         ''')
+                        return None
+                        
                 api_key_valid = True
                 try: # Check first 
                         self.check_gemini_api_key(input_gemini_api)
