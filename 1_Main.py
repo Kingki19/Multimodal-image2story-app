@@ -103,8 +103,8 @@ class Model:
                 model = genai.GenerativeModel(gemini_version)
                 return model
                 
-        # def on_generation_complete(full_text):
-        #         st.session_state.story_results.append(full_text)
+        def on_generation_complete(self, full_text):
+                st.session_state.story_results.append(full_text)
                 
         def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
@@ -114,7 +114,7 @@ class Model:
                 response = model.generate_content(
                         [st.session_state.model_prompt, st.session_state.uploaded_image], 
                         stream = True,
-                        on_generation_complete = on_generation_complete
+                        on_generation_complete = self.on_generation_complete
                 )
                 full_text = ""
                 for chunk in response:
