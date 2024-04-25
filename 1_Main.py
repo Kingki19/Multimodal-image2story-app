@@ -118,15 +118,9 @@ class Model:
                 st.image(st.session_state.uploaded_image)
                 response = model.generate_content(
                         [st.session_state.model_prompt, st.session_state.uploaded_image], 
-                        stream = True,
                         on_generation_complete=self.on_generation_complete
                 )
-                full_text = ""
-                for chunk in response:
-                        full_text += process_chunk(chunk)
-        
-                # Return
-                st.write(full_text)
+            
 
 ##### TABS CONFIGURATION #####
 class TabInput:
