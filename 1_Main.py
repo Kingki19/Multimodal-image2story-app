@@ -116,9 +116,9 @@ class Model:
                         stream = True
                 )
                 full_text = ""
-                for chunk in response:
+                for chunk in response.text:
                         st.write(chunk)
-                        full_text += chunk.text
+                        full_text += chunk
                 # Return
                 st.write(full_text)
                 st.session_state.story_results.append(full_text)
