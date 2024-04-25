@@ -117,7 +117,7 @@ class Model:
                 )
                 full_text = ""
                 for chunk in response:
-                        st.write(chunnk)
+                        st.write(chunk)
                         full_text += chunk
                 # Return
                 st.write(full_text)
