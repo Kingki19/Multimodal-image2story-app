@@ -147,7 +147,7 @@ class TabInput:
                 with col_image_upload:
                         uploaded_image = st.file_uploader(
                                 "Choose image file", 
-                                type=["jpg", "jpeg", "png"], 
+                                type=["jpg", "jpeg", "png", "webp"], 
                                 help='Only accept one image'
                         )
                         
@@ -237,18 +237,19 @@ class TabInput:
                 
                 if st.session_state.image_type == '':
                         st.session_state.disabled_generate_button = True
+                        
         def input_total_paragraph(self) -> None:
                 '''user input total paragraph'''
                 # initiate
                 if 'total_paragraphs' not in st.session_state:
                         st.session_state.total_paragraphs = None
                 # add
-                total_par_input = st.slider(
+                total_par_input = st.number_input(
                         'Total Paragraphs Generated',
                         min_value = 1,
-                        max_value = 3,
+                        max_value = 10,
                         value = 1,
-                        help = 'Based on your expectation, i give limit for each image to generate max 3 paragraph.'
+                        help = 'Based on your expectation, i give limit for each image to generate max 10 paragraph.'
                 )
                 st.session_state.total_paragraphs = total_par_input
 
