@@ -116,8 +116,10 @@ class Model:
                         return chunk.text
                 st.write(st.session_state.model_prompt)
                 st.image(st.session_state.uploaded_image)
+                text_prompt = str(st.session_state.model_prompt)
+                image = st.session_state.uploaded_image
                 response = model.generate_content(
-                        [st.session_state.model_prompt, st.session_state.uploaded_image], 
+                        [text_prompt, image], 
                         on_generation_complete=self.on_generation_complete
                 )
             
