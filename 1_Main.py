@@ -27,6 +27,7 @@ class GeminiAPIManager:
                                 genai.configure(api_key=gemini_api_key)
                                 model = genai.GenerativeModel('gemini-pro')
                                 response = model.generate_content("Hello")
+                                st.success("Gemini API key is valid!")
                         except Exception as e:
                                 st.warning(e)                        
         def gemini_api_input(self) -> str: #It return API-key as string, i can't store it in st.session_state
@@ -350,7 +351,6 @@ def main():
         """)
         with st.container(border=True): 
                 gemini_api_key = GeminiAPIManager().gemini_api_input()
-                st.write(gemini_api_key)
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
         with tab1: TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
