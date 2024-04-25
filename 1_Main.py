@@ -110,7 +110,7 @@ class Model:
                 model = self.configuration()
                 response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image], stream=True)
                 for chunk in response:
-                        print(chunk.text)
+                        st.write(chunk.text)
                 # Return
                 st.session_state.story_results.append(response.text)
 
