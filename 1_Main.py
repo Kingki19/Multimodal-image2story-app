@@ -114,8 +114,8 @@ class Model:
                 def process_chunk(chunk):
                         st.write(chunk.text)
                         return chunk.text
-                st.write(type(st.session_state.model_prompt))
-                st.write(type(st.session_state.uploaded_image))
+                st.write(st.session_state.model_prompt)
+                st.image(st.session_state.uploaded_image)
                 response = model.generate_content(
                         [st.session_state.model_prompt, st.session_state.uploaded_image], 
                         stream = True,
