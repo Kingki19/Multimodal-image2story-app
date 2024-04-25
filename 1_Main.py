@@ -90,12 +90,13 @@ class Model:
                         - Writing Style: {st.session_state.writing_style}
                         - Story Theme: {st.session_state.story_theme}
                         - Image Type: {st.session_state.image_type}
-                        - You need generate story exactly {st.session_state.total_paragraphs} paragraphs
+                        - You need generate story exactly {str(st.session_state.total_paragraphs)} paragraphs
                         - Here's additional message for you when generate the story:
                         {st.session_state.add_message}
                 """
                 # Return
                 st.session_state.model_prompt = input_prompt
+                
         def configuration(self):
                 '''Configure the model and use it in multiple case'''
                 genai.configure(api_key=self.gemini_api_key)
@@ -117,6 +118,8 @@ class Model:
                 st.write(st.session_state.model_prompt)
                 st.image(st.session_state.uploaded_image)
                 text_prompt = str(st.session_state.model_prompt)
+                st.write(type(text_prompt))
+                st.write(type(st.session_state.model_prompt))
                 image = st.session_state.uploaded_image
                 response = model.generate_content(
                         [text_prompt, image], 
