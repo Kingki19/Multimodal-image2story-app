@@ -118,7 +118,7 @@ class Model:
                 full_text = ""
                 for chunk in response:
                         st.write(chunk)
-                        full_text += chunk
+                        full_text += chunk.text
                 # Return
                 st.write(full_text)
                 st.session_state.story_results.append(full_text)
