@@ -103,16 +103,25 @@ class Model:
                 model = genai.GenerativeModel(gemini_version)
                 return model
                 
+        def on_generation_complete(full_text):
+                st.session_state.story_results.append(full_text)
+                
         def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
                 self.prompt()
                 model = self.configuration()
-                response = model.generate_content([st.session_state.model_prompt, st.session_state.uploaded_image], stream=True)
-                for chunk in response:
-                        st.write(chunk.text)
+                response = model.generate_content(
+                        [st.session_state.model_prompt, st.session_state.uploaded_image], 
+                        stream = True,
+                        on_generation_complete = on_generation_complete
+                )
+                # for chunk in response:
+                #         st.write(chunk.text)
                 # Return
-                st.session_state.story_results.append(response.text)
+
+
+                # st.session_state.story_results.append(response.text)
 
 ##### TABS CONFIGURATION #####
 class TabInput:
