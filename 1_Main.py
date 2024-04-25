@@ -117,8 +117,10 @@ class Model:
                 )
                 full_text = ""
                 for chunk in response:
+                        st.write(chunnk)
                         full_text += chunk
                 # Return
+                st.write(full_text)
                 st.session_state.story_results.append(full_text)
 
 ##### TABS CONFIGURATION #####
