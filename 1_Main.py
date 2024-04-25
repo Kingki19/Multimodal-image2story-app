@@ -113,8 +113,7 @@ class Model:
                 model = self.configuration()
                 response = model.generate_content(
                         [st.session_state.model_prompt, st.session_state.uploaded_image], 
-                        stream = True,
-                        on_generation_complete = self.on_generation_complete
+                        stream = True
                 )
                 full_text = ""
                 for chunk in response:
