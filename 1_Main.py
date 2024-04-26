@@ -292,7 +292,7 @@ class TabInput:
                 )
                 st.session_state.add_message = add_message_input
                 
-        def generate_story_button(self) -> None:
+        async def generate_story_button(self) -> None:
                 '''Button to run model to generate story'''
                 if 'generate_button_clicked' not in st.session_state:
                         st.session_state.generate_button_clicked = False
