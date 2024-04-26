@@ -120,6 +120,8 @@ class Model:
                 response = model.generate_content([text_prompt, image], stream = True)
                 with st.spinner('Wait...'): # Add loading screen
                         time.sleep(20) # wait 20 second
+                for x in response:
+                        st.write(x.text)
                 st.session_state.story_results.append(response.text)
             
 
