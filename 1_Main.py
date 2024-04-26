@@ -118,18 +118,13 @@ class Model:
                 genai.configure(api_key=self.gemini_api_key)
                 gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
                 model = genai.GenerativeModel(gemini_version)
-                def process_chunk(chunk):
-                        st.write(chunk.text)
-                        return chunk.text
+                
                 # st.write(st.session_state.model_prompt)
                 # st.image(st.session_state.uploaded_image)
                 # text_prompt = str(st.session_state.model_prompt)
                 text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                response = model.generate_content({
-                    "text": text_prompt,
-                    "image": image
-                }, stream = True)
+                response = model.generate_content([text_prompt, image], stream = True)
                 time.sleep(10) # second
                 for x in response:
                         st.write(x.text)
