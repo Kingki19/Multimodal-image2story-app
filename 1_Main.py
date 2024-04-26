@@ -2,6 +2,7 @@ import streamlit as st
 import google.generativeai as genai
 # from PIL import Image
 import PIL.Image
+import time
 
 ##### PAGE CONFIGURATION #####
 def page_config() -> None:
@@ -128,7 +129,10 @@ class Model:
                 response = model.generate_content({
                     "text": text_prompt,
                     "image": image
-                }, on_generation_complete=self.on_generation_complete)
+                }, stream = True)
+                time.sleep(10) # second
+                for x in response:
+                        st.write(x.text)
             
 
 ##### TABS CONFIGURATION #####
