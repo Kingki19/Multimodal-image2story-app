@@ -132,10 +132,14 @@ class Model:
                 image = st.session_state.uploaded_image
                 with st.spinner('Wait...'): # Add loading screen
                         response = await self.async_generate_content(model, text_prompt, image)
+                
+                st.write(response.text)
+                
                 st.session_state.story_results.append(response.text)
+                
 
         async def async_generate_content(self, model, text_prompt, image):
-                return await model.generate_content([text_prompt, image], stream=True)
+                return await model.generate_content([text_prompt, image])
 
 ##### TABS CONFIGURATION #####
 class TabInput:
