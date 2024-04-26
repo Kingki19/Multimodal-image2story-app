@@ -113,21 +113,16 @@ class Model:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
                 self.prompt()
-                # model = self.configuration()
-                '''Configure the model and use it in multiple case'''
-                genai.configure(api_key=self.gemini_api_key)
-                gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
-                model = genai.GenerativeModel(gemini_version)
-                
-                # st.write(st.session_state.model_prompt)
-                # st.image(st.session_state.uploaded_image)
-                # text_prompt = str(st.session_state.model_prompt)
-                text_prompt = "Buatkan cerita dari gambar ini!"
+                model = self.configuration()
+                text_prompt = str(st.session_state.model_prompt)
+                # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 response = model.generate_content([text_prompt, image], stream = True)
-                time.sleep(10) # second
+                with st.spinner('Wait...'): # Add loading screen
+                    time.sleep(10)
                 for x in response:
                         st.write(x.text)
+                st.session_state.story_results.append(full_text)
             
 
 ##### TABS CONFIGURATION #####
