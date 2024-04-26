@@ -109,7 +109,20 @@ class Model:
         def on_generation_complete(self, full_text):
                 st.session_state.story_results.append(full_text)
                 
-        def generate_story_from_image(self) -> list[str]:
+        # def generate_story_from_image(self) -> list[str]: ERROR
+        #         '''Generate story using input image, last stories (if exist), input other text'''
+        #         # Execute prompt function
+        #         self.prompt()
+        #         model = self.configuration()
+        #         text_prompt = str(st.session_state.model_prompt)
+        #         # text_prompt = "Buatkan cerita dari gambar ini!"
+        #         image = st.session_state.uploaded_image
+        #         with st.spinner('Wait...'): # Add loading screen
+        #                 response = model.generate_content([text_prompt, image], stream=True)
+        #                 time.sleep(20) # wait 20 second
+        #         st.session_state.story_results.append(response.text)
+            
+        async def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
                 self.prompt()
@@ -118,10 +131,11 @@ class Model:
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 with st.spinner('Wait...'): # Add loading screen
-                        response = model.generate_content([text_prompt, image], stream=True)
-                        time.sleep(20) # wait 20 second
+                        response = await self.async_generate_content(model, text_prompt, image)
                 st.session_state.story_results.append(response.text)
-            
+
+        async def async_generate_content(self, model, text_prompt, image):
+                return await model.generate_content([text_prompt, image], stream=True)
 
 ##### TABS CONFIGURATION #####
 class TabInput:
