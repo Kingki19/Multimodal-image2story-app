@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
-from PIL import Image
+# from PIL import Image
+import PIL.Image
 
 ##### PAGE CONFIGURATION #####
 def page_config() -> None:
@@ -119,12 +120,15 @@ class Model:
                 def process_chunk(chunk):
                         st.write(chunk.text)
                         return chunk.text
-                st.write(st.session_state.model_prompt)
-                st.image(st.session_state.uploaded_image)
+                # st.write(st.session_state.model_prompt)
+                # st.image(st.session_state.uploaded_image)
                 # text_prompt = str(st.session_state.model_prompt)
                 text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                response = model.generate_content([text_prompt, image], on_generation_complete=self.on_generation_complete)
+                response = model.generate_content({
+                    "text": text_prompt,
+                    "image": image
+                }, on_generation_complete=self.on_generation_complete)
             
 
 ##### TABS CONFIGURATION #####
@@ -166,7 +170,8 @@ class TabInput:
                         
                         if uploaded_image is not None:
                                 # Access image uploaded using Image from PIL (Pillow)
-                                image_PIL = Image.open(uploaded_image) 
+                                image_PIL = PIL.Image.open(uploaded_image)
+                                
                                 # Save image to session state
                                 st.session_state.uploaded_image = image_PIL
                                 st.session_state.image_uploaded = True
