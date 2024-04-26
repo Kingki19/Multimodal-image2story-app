@@ -122,7 +122,7 @@ class Model:
                     time.sleep(10)
                 for x in response:
                         st.write(x.text)
-                st.session_state.story_results.append(full_text)
+                st.session_state.story_results.append(response.text)
             
 
 ##### TABS CONFIGURATION #####
