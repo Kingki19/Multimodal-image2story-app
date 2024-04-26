@@ -121,12 +121,10 @@ class Model:
                         return chunk.text
                 st.write(st.session_state.model_prompt)
                 st.image(st.session_state.uploaded_image)
-                text_prompt = str(st.session_state.model_prompt)
+                # text_prompt = str(st.session_state.model_prompt)
+                text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                response = model.generate_content(
-                        [text_prompt, image], 
-                        on_generation_complete=self.on_generation_complete
-                )
+                response = model.generate_content([text_prompt, image], on_generation_complete=self.on_generation_complete)
             
 
 ##### TABS CONFIGURATION #####
