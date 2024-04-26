@@ -122,11 +122,8 @@ class Model:
         #                 response = model.generate_content([text_prompt, image], stream=True)
         #                 time.sleep(20) # wait 20 second
         #         st.session_state.story_results.append(response.text)
-
-        async def async_generate_content(self, model, text_prompt, image):
-                return await model.generate_content([text_prompt, image], stream=True)
                 
-        async def generate_story_from_image(self) -> list[str]:
+        def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
                 self.prompt()
@@ -135,7 +132,7 @@ class Model:
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 # with st.spinner('Wait...'): # Add loading screen
-                response = await self.async_generate_content(model, text_prompt, image)
+                response = model.generate_content([text_prompt, image], stream=True)
                 
                 st.write(response.text)
                 
@@ -295,13 +292,13 @@ class TabInput:
                 )
                 st.session_state.add_message = add_message_input
                 
-        async def generate_story_button(self) -> None:
+        def generate_story_button(self) -> None:
                 '''Button to run model to generate story'''
                 if 'generate_button_clicked' not in st.session_state:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
-                        await Model(self.gemini_api_key).generate_story_from_image()
+                        Model(self.gemini_api_key).generate_story_from_image()
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
@@ -311,7 +308,7 @@ class TabInput:
                         # Rerun app
                         st.rerun()
         
-        async def create_tab_input(self) -> None:
+        def create_tab_input(self) -> None:
                 '''Tab for input images and another element to generate story
                 '''
                 col_subheader_input, col_iteration = st.columns(2)
@@ -335,7 +332,7 @@ class TabInput:
                 # Add button to execute action in the input tab
                 col_generate_button, col_button_clicked = st.columns(2)
                 with col_generate_button: 
-                        await self.generate_story_button()
+                        self.generate_story_button()
                 with col_button_clicked:
                         # Tell user to go to another tab after the story was generated
                         if st.session_state.generate_button_clicked == True:
@@ -368,7 +365,7 @@ class TabHistory:
                 st.write(st.session_state.model_prompt)
 
 ##### MAIN EXECUTION
-async def main():
+def main():
         ''' MAIN EXECUTION APPS IN HERE
         '''
         page_config()
@@ -386,10 +383,10 @@ async def main():
                 gemini_api_key = GeminiAPIManager().gemini_api_input()
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
         with tab1: 
-                await TabInput(gemini_api_key).create_tab_input()
+                TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
         with tab3: TabChat().create_tab_chat()
         with tab4: TabHistory().create_tab_history(gemini_api_key)
 
 # Execute main
-asyncio.run(main())
+main()
