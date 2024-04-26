@@ -121,7 +121,6 @@ class Model:
                 # with st.spinner('Wait...'): # Add loading screen
                 #         time.sleep(10)
                 with st.spinner('Wait...'): 
-                # Loop untuk menampilkan kemajuan spinner
                         while not response.done:
                                 time.sleep(0.1)  # Tunggu 0.1 detik
                                 st.spinner.text(f'Generating... ({response.progress}%)')
