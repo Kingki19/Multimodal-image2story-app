@@ -122,7 +122,10 @@ class Model:
         #                 response = model.generate_content([text_prompt, image], stream=True)
         #                 time.sleep(20) # wait 20 second
         #         st.session_state.story_results.append(response.text)
-            
+
+        async def async_generate_content(self, model, text_prompt, image):
+                return await model.generate_content([text_prompt, image], stream=True)
+                
         async def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
@@ -139,8 +142,7 @@ class Model:
                 st.session_state.story_results.append(response.text)
                 
 
-        async def async_generate_content(self, model, text_prompt, image):
-                return await model.generate_content([text_prompt, image])
+        
 
 ##### TABS CONFIGURATION #####
 class TabInput:
