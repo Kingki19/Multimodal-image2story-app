@@ -117,11 +117,9 @@ class Model:
                 text_prompt = str(st.session_state.model_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                response = model.generate_content([text_prompt, image], stream = True)
+                response = model.generate_content([text_prompt, image])
                 with st.spinner('Wait...'): # Add loading screen
                         time.sleep(60) # wait 20 second
-                for x in response:
-                        st.write(x.text)
                 st.session_state.story_results.append(response.text)
             
 
