@@ -120,10 +120,12 @@ class Model:
                 response = model.generate_content([text_prompt, image], stream = True)
                 # with st.spinner('Wait...'): # Add loading screen
                 #         time.sleep(10)
-                with st.spinner('Wait...'): 
-                        while not response.done:
-                                time.sleep(0.1)  # Tunggu 0.1 detik
-                                st.spinner.text(f'Generating... ({response.progress}%)')
+                progress_bar = st.progress(0)
+                total_waktu = 20 
+                
+                for waktu in range(total_waktu + 1):
+                        progress_bar.progress(int((waktu / total_waktu) * 100), text="Wait until the story is successfully created")
+                        time.sleep(1)  # Tunggu 1 detik
                 for x in response:
                         st.write(x.text)
                 st.session_state.story_results.append(response.text)
