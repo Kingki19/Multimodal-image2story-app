@@ -3,6 +3,7 @@ import google.generativeai as genai
 # from PIL import Image
 import PIL.Image
 import time
+import asyncio
 
 ##### PAGE CONFIGURATION #####
 def page_config() -> None:
@@ -308,7 +309,7 @@ class TabInput:
                         # Rerun app
                         st.rerun()
         
-        def create_tab_input(self) -> None:
+        async def create_tab_input(self) -> None:
                 '''Tab for input images and another element to generate story
                 '''
                 col_subheader_input, col_iteration = st.columns(2)
@@ -331,7 +332,8 @@ class TabInput:
                 
                 # Add button to execute action in the input tab
                 col_generate_button, col_button_clicked = st.columns(2)
-                with col_generate_button: self.generate_story_button()
+                with col_generate_button: 
+                        await self.generate_story_button()
                 with col_button_clicked:
                         # Tell user to go to another tab after the story was generated
                         if st.session_state.generate_button_clicked == True:
@@ -364,7 +366,7 @@ class TabHistory:
                 st.write(st.session_state.model_prompt)
 
 ##### MAIN EXECUTION
-def main():
+async def main():
         ''' MAIN EXECUTION APPS IN HERE
         '''
         page_config()
@@ -381,10 +383,11 @@ def main():
         with st.container(border=True): 
                 gemini_api_key = GeminiAPIManager().gemini_api_input()
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
-        with tab1: TabInput(gemini_api_key).create_tab_input()
+        with tab1: 
+                await TabInput(gemini_api_key).create_tab_input()
         with tab2: TabStory().create_tab_story()
         with tab3: TabChat().create_tab_chat()
         with tab4: TabHistory().create_tab_history(gemini_api_key)
 
 # Execute main
-main()
+asyncio.run(main())
