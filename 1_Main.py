@@ -126,8 +126,6 @@ class Model:
                 for waktu in range(total_waktu + 1):
                         progress_bar.progress(int((waktu / total_waktu) * 100), text="Wait until the story is successfully created")
                         time.sleep(1)  # Tunggu 1 detik
-                for x in response:
-                        st.write(x.text)
                 st.session_state.story_results.append(response.text)
             
 
