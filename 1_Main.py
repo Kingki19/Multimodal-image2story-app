@@ -118,8 +118,13 @@ class Model:
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 response = model.generate_content([text_prompt, image], stream = True)
-                with st.spinner('Wait...'): # Add loading screen
-                        time.sleep(10)
+                # with st.spinner('Wait...'): # Add loading screen
+                #         time.sleep(10)
+                with st.spinner('Wait...'): 
+                # Loop untuk menampilkan kemajuan spinner
+                        while not response.done:
+                                time.sleep(0.1)  # Tunggu 0.1 detik
+                                st.spinner.text(f'Generating... ({response.progress}%)')
                 for x in response:
                         st.write(x.text)
                 st.session_state.story_results.append(response.text)
