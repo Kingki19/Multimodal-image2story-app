@@ -130,8 +130,8 @@ class Model:
                 text_prompt = str(st.session_state.model_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                with st.spinner('Wait...'): # Add loading screen
-                        response = await self.async_generate_content(model, text_prompt, image)
+                # with st.spinner('Wait...'): # Add loading screen
+                response = await self.async_generate_content(model, text_prompt, image)
                 
                 st.write(response.text)
                 
