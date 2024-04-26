@@ -118,14 +118,8 @@ class Model:
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 response = model.generate_content([text_prompt, image], stream = True)
-                # with st.spinner('Wait...'): # Add loading screen
-                #         time.sleep(10)
-                progress_bar = st.progress(0)
-                total_waktu = 20 
-                
-                for waktu in range(total_waktu + 1):
-                        progress_bar.progress(int((waktu / total_waktu) * 100), text="Wait until the story is successfully created")
-                        time.sleep(1)  # Tunggu 1 detik
+                with st.spinner('Wait...'): # Add loading screen
+                        time.sleep(20) # wait 20 second
                 st.session_state.story_results.append(response.text)
             
 
