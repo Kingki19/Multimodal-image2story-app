@@ -298,7 +298,7 @@ class TabInput:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Execute some code here, right now for debug
-                        Model(self.gemini_api_key).generate_story_from_image()
+                        await Model(self.gemini_api_key).generate_story_from_image()
                         st.session_state.iteration += 1
                         # Reset session to delete images
                         st.session_state.uploaded_image = None
