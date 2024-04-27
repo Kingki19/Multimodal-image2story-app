@@ -264,7 +264,7 @@ class TabInput:
                         min_value = 1,
                         max_value = 10,
                         value = 1,
-                        help = 'Based on your expectation, i give limit for each image to generate max 10 paragraph.'
+                        help = 'Based on your expectation, i give limit for each image to generate max 10 paragraph. The more paragraphs there are the more random things Gemini will add to the story. From me, i recommend for using in range 1 to 5'
                 )
                 st.session_state.total_paragraphs = total_par_input
 
@@ -275,7 +275,7 @@ class TabInput:
                 add_message_input = st.text_area(
                         'Additional Message',
                         help = 'Additional prompts that are not in the options',
-                        placeholder = 'giving a name or atmosphere or certain emotion to an image'
+                        placeholder = 'giving (1) a name or atmosphere or certain emotion to an image; (2) more detail to story that will be generated such as dialog or not'
                 )
                 st.session_state.add_message = add_message_input
                 
