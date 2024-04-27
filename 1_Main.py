@@ -1,9 +1,14 @@
 import streamlit as st
 import google.generativeai as genai
-# from PIL import Image
 import PIL.Image
-import time
-import asyncio
+# Download Story (libraries)
+from reportlab.lib.pagesizes import letter
+from reportlab.pdfgen import canvas
+from io import BytesIO
+from docx import Document
+from odf.opendocument import OpenDocumentText
+from odf.text import P
+
 
 ##### PAGE CONFIGURATION #####
 def page_config() -> None:
@@ -109,22 +114,6 @@ class Model:
                 # Return
                 st.session_state.model_generate_story_prompt = input_prompt
                 
-        def on_generation_complete(self, full_text):
-                st.session_state.story_results.append(full_text)
-                
-        # def generate_story_from_image(self) -> list[str]: ERROR
-        #         '''Generate story using input image, last stories (if exist), input other text'''
-        #         # Execute prompt function
-        #         self.prompt()
-        #         model = self.configuration()
-        #         text_prompt = str(st.session_state.model_prompt)
-        #         # text_prompt = "Buatkan cerita dari gambar ini!"
-        #         image = st.session_state.uploaded_image
-        #         with st.spinner('Wait...'): # Add loading screen
-        #                 response = model.generate_content([text_prompt, image], stream=True)
-        #                 time.sleep(20) # wait 20 second
-        #         st.session_state.story_results.append(response.text)
-                
         def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
@@ -199,13 +188,6 @@ class TabInput:
                                         caption="Uploaded Image", 
                                         use_column_width='auto'
                                 )
-                # I SAVE THIS BECAUSE SHOW WHAT IS NEED TO 
-                # if st.button("Execute"):
-                #         # Lakukan eksekusi sesuai dengan tombol tertentu
-                        
-                #         # Reset session state untuk menghapus gambar
-                #         st.session_state.uploaded_image = None
-                #         st.session_state.image_uploaded = False
         
         def input_writing_style(self) -> None:
                 '''Add writing style to story'''
@@ -358,10 +340,14 @@ class TabStory:
                         
         def create_tab_story(self) -> None:
                 ''' Function to create tab for story output'''
+                if 'story_results' not in st.session_state:
+                        story_results_generated = True
+                else:
+                        story_results_generated = False
                 col_header_story, col_download = st.columns([0.6, 0.4])
                 with col_header_story: st.subheader('Story Output')
-                with col_download: self.download_story_popover()
-                if 'story_results' not in st.session_state:
+                with col_download: self.download_story_popover(disabled = story_results_generated)
+                if story_results_generated is True:
                         st.info('There is no story generated yet')
                 else:
                         story_combined = '\n\n'.join(st.session_state.story_results)
