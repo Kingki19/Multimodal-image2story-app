@@ -284,7 +284,7 @@ class TabInput:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
                         # Manage error if user forget to input gemini api key
-                        if self.gemini_api_key == "":
+                        if (self.gemini_api_key == "") or (self.gemini_api_key == None):
                                 st.error("You forgot to enter the Gemini-API-Key")
                                 return
                         # Execute some code here, right now for debug
