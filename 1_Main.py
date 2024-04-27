@@ -343,12 +343,16 @@ class TabStory:
                 doc_buffer.close()
                 st.download_button("Download in DOC", doc_data, file_name="output_story.docx", mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
                 
+
         def download_story_to_odt(self, story_text: str) -> None:
                 doc = OpenDocumentText()
                 para = P(text=story_text)
                 doc.text.addElement(para)
-                st.download_button("Download in ODT", doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
-                
+                with BytesIO() as output:
+                        doc.save(output)  # Simpan ke BytesIO
+                        data = output.getvalue()  # Dapatkan data biner
+                st.download_button("Download in ODT", data, file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
+                        
         def popover_download_story(self, disabled) -> None:
                 if 'story_results' in st.session_state:   
                         story_combined = '\n\n'.join(st.session_state.story_results)
