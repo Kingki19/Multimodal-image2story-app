@@ -2,9 +2,10 @@ import streamlit as st
 import google.generativeai as genai
 import PIL.Image
 # Download Story (libraries)
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
 from io import BytesIO
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
 from docx import Document
 from odf.opendocument import OpenDocumentText
 from odf.text import P
