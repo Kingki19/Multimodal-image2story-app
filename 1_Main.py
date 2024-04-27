@@ -86,8 +86,8 @@ class Model:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_results' not in st.session_state:
                         st.session_state.story_results = []
-                if 'model_prompt' not in st.session_state:
-                        st.session_state.model_prompt = None
+                if 'model_generate_story_prompt' not in st.session_state:
+                        st.session_state.model_generate_story_prompt = None
                 # Combined all stories from a list into a string
                 story_combined = '\n\n'.join(st.session_state.story_results)
                 input_prompt = f"""
@@ -105,7 +105,7 @@ class Model:
                         {st.session_state.add_message}
                 """
                 # Return
-                st.session_state.model_generate_image_prompt = input_prompt
+                st.session_state.model_generate_story_prompt = input_prompt
                 
         def on_generation_complete(self, full_text):
                 st.session_state.story_results.append(full_text)
@@ -377,8 +377,8 @@ class TabChat:
 class TabHistory:
         def create_tab_history(self, gemini_api_key):
                 st.subheader('Prompt history for story generation')
-                Model(gemini_api_key).prompt()
-                st.write(st.session_state.model_prompt)
+                Model(gemini_api_key).model_generate_story_prompt()
+                st.write(st.session_state.model_generate_story_prompt)
 
 ##### MAIN EXECUTION
 def main():
