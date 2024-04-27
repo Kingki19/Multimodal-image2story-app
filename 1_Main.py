@@ -345,11 +345,11 @@ class TabStory:
                 
         def download_story_to_odt(self, story_text: str) -> None:
                 doc = OpenDocumentText()
-                para = P(text=string_data)
+                para = P(text=story_text)
                 doc.text.addElement(para)
                 st.download_button("Download in ODT", odt_doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
                 
-        def download_story_popover(self, disabled) -> None:
+        def popover_download_story(self, disabled) -> None:
                 story_combined = '\n\n'.join(st.session_state.story_results)
                 with st.popover("Download Story", use_container_width=True, disabled = disabled):
                         self.download_story_to_pdf(story_combined)
@@ -365,7 +365,7 @@ class TabStory:
                         
                 col_header_story, col_download = st.columns([0.6, 0.4])
                 with col_header_story: st.subheader('Story Output')
-                with col_download: self.download_story_popover(disabled = story_results_generated)
+                with col_download: self.popover_download_story(disabled = story_results_generated)
                         
                 if story_results_generated is True:
                         st.info('There is no story generated yet')
