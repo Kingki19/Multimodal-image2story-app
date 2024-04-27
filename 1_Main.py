@@ -117,7 +117,7 @@ class Model:
         def generate_story_from_image(self) -> list[str]:
                 '''Generate story using input image, last stories (if exist), input other text'''
                 # Execute prompt function
-                self.prompt()
+                self.generate_story_prompt()
                 model = self.configuration()
                 text_prompt = str(st.session_state.model_generate_image_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
