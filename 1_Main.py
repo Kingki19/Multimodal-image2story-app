@@ -342,11 +342,11 @@ class TabInput:
                                 st.session_state.generate_button_clicked = False
                       
 class TabStory:
-        def download_story_to_pdf(self) -> pdf:
+        def download_story_to_pdf(self) -> None:
                 st.write("PDF")
-        def download_story_to_doc(self) -> doc:
+        def download_story_to_doc(self) -> None:
                 st.write("Doc")
-        def download_story_to_odt(self) -> odt:
+        def download_story_to_odt(self) -> None:
                 st.write("Odt")
         def download_story_popover(self) -> None:
                 with st.popover("Download Story", use_container_width=True):
