@@ -347,7 +347,7 @@ class TabStory:
                 doc = OpenDocumentText()
                 para = P(text=story_text)
                 doc.text.addElement(para)
-                st.download_button("Download in ODT", odt_doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
+                st.download_button("Download in ODT", doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
                 
         def popover_download_story(self, disabled) -> None:
                 story_combined = '\n\n'.join(st.session_state.story_results)
