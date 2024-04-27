@@ -334,7 +334,8 @@ class TabStory:
                 buffer = BytesIO()
                 doc = SimpleDocTemplate(buffer, pagesize=letter)
                 styles = getSampleStyleSheet()
-                story = [Paragraph(story_text, styles["BodyText"])]
+                story_paragraphs = story_text.split("\n")
+                story = [Paragraph(p, styles["BodyText"]) for p in story_paragraphs if p.strip()]
                 doc.build(story)
                 pdf_data = buffer.getvalue()
                 buffer.close()
