@@ -350,7 +350,10 @@ class TabStory:
                 st.download_button("Download in ODT", doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
                 
         def popover_download_story(self, disabled) -> None:
-                story_combined = '\n\n'.join(st.session_state.story_results)
+                if 'story_results' in st.session_state:   
+                        story_combined = '\n\n'.join(st.session_state.story_results)
+                else:
+                        return
                 with st.popover("Download Story", use_container_width=True, disabled = disabled):
                         self.download_story_to_pdf(story_combined)
                         self.download_story_to_doc(story_combined)
@@ -360,12 +363,14 @@ class TabStory:
                 ''' Function to create tab for story output'''
                 if 'story_results' not in st.session_state:
                         story_results_generated = True
+                        disable_popover_download = True
                 else:
                         story_results_generated = False
+                        disable_popover_download = False
                         
                 col_header_story, col_download = st.columns([0.6, 0.4])
                 with col_header_story: st.subheader('Story Output')
-                with col_download: self.popover_download_story(disabled = story_results_generated)
+                with col_download: self.popover_download_story(disabled = disable_popover_download)
                         
                 if story_results_generated is True:
                         st.info('There is no story generated yet')
