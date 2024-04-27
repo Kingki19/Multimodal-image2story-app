@@ -92,8 +92,10 @@ class Model:
                 story_combined = '\n\n'.join(st.session_state.story_results)
                 input_prompt = f"""
                         Hey, help me to generate a continuous story based on some image input.
-                        For now, the following story is produced: 
+                        For now, the following story is produced:  
+                        
                         {story_combined}
+                        
                         You just have to continue the story from the story above without needing to rewrite the story. If there's no story in it then you have to create a new one.
                         Make it readable for human.
                         Here are the rules you must adhere to when producing stories based on images:
