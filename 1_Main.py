@@ -199,7 +199,7 @@ class TabInput:
                 if st.session_state.disabled == False:
                         writing_style_input = st.text_input(
                                 "Writing Style",
-                                placeholder = 'e.g Fantasy, Romance, Sci-fi, etc',
+                                placeholder = 'e.g Poetic, Novel, Caption, Short Story, etc',
                                 help = "You can only input this once for each ongoing story",
                                 disabled = st.session_state.disabled
                         )
