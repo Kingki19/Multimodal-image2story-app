@@ -365,7 +365,7 @@ class TabStory:
                         
         def create_tab_story(self) -> None:
                 ''' Function to create tab for story output'''
-                if 'story_results' not in st.session_state:
+                if ('story_results' not in st.session_state) or (st.session_state.story_results == []):
                         story_results_generated = True
                         disable_popover_download = True
                 else:
