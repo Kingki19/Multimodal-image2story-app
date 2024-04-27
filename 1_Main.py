@@ -353,7 +353,7 @@ class TabStory:
                 if 'story_results' in st.session_state:   
                         story_combined = '\n\n'.join(st.session_state.story_results)
                 else:
-                        return
+                        story_combined = ""
                 with st.popover("Download Story", use_container_width=True, disabled = disabled):
                         self.download_story_to_pdf(story_combined)
                         self.download_story_to_doc(story_combined)
