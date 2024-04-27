@@ -295,8 +295,7 @@ class TabInput:
                         st.rerun()
         
         def create_tab_input(self) -> None:
-                '''Tab for input images and another element to generate story
-                '''
+                '''Tab for input images and another element to generate story'''
                 col_subheader_input, col_iteration = st.columns(2)
                 with col_subheader_input: st.subheader('Input Image and Elements')
                 with col_iteration: self.count_iteration()
@@ -326,17 +325,36 @@ class TabInput:
                                 st.session_state.generate_button_clicked = False
                       
 class TabStory:
-        def download_story_to_pdf(self) -> None:
-                st.write("PDF")
-        def download_story_to_doc(self) -> None:
-                st.write("Doc")
-        def download_story_to_odt(self) -> None:
-                st.write("Odt")
+        def download_story_to_pdf(self, story_text: str) -> None:
+                buffer = BytesIO()
+                pdf = canvas.Canvas(buffer, pagesize=letter)
+                pdf.drawString(100, 750, story_text)
+                pdf.save()
+                pdf_data = buffer.getvalue()
+                buffer.close()
+                st.download_button("Download in PDF", pdf_data, file_name="output_story.pdf", mime="application/pdf")
+                
+        def download_story_to_doc(self, story_text: str) -> None:
+                doc = Document()
+                doc.add_paragraph(story_text)
+                doc_buffer = BytesIO()
+                doc.save(doc_buffer)
+                doc_data = doc_buffer.getvalue()
+                doc_buffer.close()
+                st.download_button("Download in DOC", doc_data, file_name="output_story.docx", mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                
+        def download_story_to_odt(self, story_text: str) -> None:
+                doc = OpenDocumentText()
+                para = P(text=string_data)
+                doc.text.addElement(para)
+                st.download_button("Download in ODT", odt_doc.save("output_story.odt"), file_name="output_story.odt", mime="application/vnd.oasis.opendocument.text")
+                
         def download_story_popover(self, disabled) -> None:
+                story_combined = '\n\n'.join(st.session_state.story_results)
                 with st.popover("Download Story", use_container_width=True, disabled = disabled):
-                        self.download_story_to_pdf()
-                        self.download_story_to_doc()
-                        self.download_story_to_odt()
+                        self.download_story_to_pdf(story_combined)
+                        self.download_story_to_doc(story_combined)
+                        self.download_story_to_odt(story_combined)
                         
         def create_tab_story(self) -> None:
                 ''' Function to create tab for story output'''
@@ -344,9 +362,11 @@ class TabStory:
                         story_results_generated = True
                 else:
                         story_results_generated = False
+                        
                 col_header_story, col_download = st.columns([0.6, 0.4])
                 with col_header_story: st.subheader('Story Output')
                 with col_download: self.download_story_popover(disabled = story_results_generated)
+                        
                 if story_results_generated is True:
                         st.info('There is no story generated yet')
                 else:
