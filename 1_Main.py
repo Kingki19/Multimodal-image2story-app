@@ -413,6 +413,13 @@ def main():
         st.title('MI2S: Multimodal Image-2-Stories using Gemini-AI')
         st.divider()
         # Description
+        st.markdown("""
+        MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. 
+        This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. 
+        By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
+        Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
+        """)
+
         col_tutorial, col_tutor_popover = st.columns(2)
         with col_tutorial: st.write("If you are new to this application, please pay attention to the short tutorial on the side/below")
         with col_tutor_popover:
@@ -428,15 +435,9 @@ def main():
                                 7. If you want to generate more story: delete image by pressing `x` button and follow again this step from step (3)
                         """)
         
-        st.markdown("""
-        MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. 
-        This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. 
-        By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. 
-        Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
-        """)
-        
         with st.container(border=True): 
                 gemini_api_key = GeminiAPIManager().gemini_api_input()
+
         tab1, tab2, tab3, tab4 = st.tabs(["📥 Input", "📖 Story", "💬 Chat", "📜 History"])
         with tab1: 
                 TabInput(gemini_api_key).create_tab_input()
