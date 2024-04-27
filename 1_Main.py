@@ -331,9 +331,10 @@ class TabInput:
 class TabStory:
         def download_story_to_pdf(self, story_text: str) -> None:
                 buffer = BytesIO()
-                pdf = canvas.Canvas(buffer, pagesize=letter)
-                pdf.drawString(100, 750, story_text)
-                pdf.save()
+                doc = SimpleDocTemplate(buffer, pagesize=letter)
+                styles = getSampleStyleSheet()
+                story = [Paragraph(story_text, styles["BodyText"])]
+                doc.build(story)
                 pdf_data = buffer.getvalue()
                 buffer.close()
                 st.download_button("Download in PDF", pdf_data, file_name="output_story.pdf", mime="application/pdf")
