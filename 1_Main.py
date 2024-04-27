@@ -74,8 +74,15 @@ class Model:
         '''
         def __init__(self, gemini_api_key):
                 self.gemini_api_key = gemini_api_key
-                
-        def prompt(self) -> None:
+        
+        def configuration(self):
+                '''Configure the model and use it in multiple case'''
+                genai.configure(api_key=self.gemini_api_key)
+                gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
+                model = genai.GenerativeModel(gemini_version)
+                return model
+        
+        def generate_story_prompt(self) -> None:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_results' not in st.session_state:
                         st.session_state.story_results = []
@@ -98,14 +105,7 @@ class Model:
                         {st.session_state.add_message}
                 """
                 # Return
-                st.session_state.model_prompt = input_prompt
-                
-        def configuration(self):
-                '''Configure the model and use it in multiple case'''
-                genai.configure(api_key=self.gemini_api_key)
-                gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
-                model = genai.GenerativeModel(gemini_version)
-                return model
+                st.session_state.model_generate_image_prompt = input_prompt
                 
         def on_generation_complete(self, full_text):
                 st.session_state.story_results.append(full_text)
@@ -128,7 +128,7 @@ class Model:
                 # Execute prompt function
                 self.prompt()
                 model = self.configuration()
-                text_prompt = str(st.session_state.model_prompt)
+                text_prompt = str(st.session_state.model_generate_image_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 if st.session_state.uploaded_image == None:
@@ -342,9 +342,23 @@ class TabInput:
                                 st.session_state.generate_button_clicked = False
                       
 class TabStory:
+        def download_story_to_pdf(self) -> pdf:
+                st.write("PDF")
+        def download_story_to_doc(self) -> doc:
+                st.write("Doc")
+        def download_story_to_odt(self) -> odt:
+                st.write("Odt")
+        def download_story_popover(self) -> None:
+                with st.popover("Download Story", use_container_width=True):
+                        self.download_story_to_pdf()
+                        self.download_story_to_doc()
+                        self.download_story_to_odt()
+                        
         def create_tab_story(self) -> None:
                 ''' Function to create tab for story output'''
-                st.subheader('Story Output')
+                col_header_story, col_download = st.columns([0.6, 0.4])
+                with col_header_story: st.subheader('Story Output')
+                with col_download: self.download_story_popover()
                 if 'story_results' not in st.session_state:
                         st.info('There is no story generated yet')
                 else:
