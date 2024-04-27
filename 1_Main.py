@@ -87,7 +87,7 @@ class Model:
                 model = genai.GenerativeModel(gemini_version)
                 return model
         
-        def generate_story_prompt(self) -> None:
+        def generate_story_prompt(self) -> str:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_results' not in st.session_state:
                         st.session_state.story_results = []
@@ -119,7 +119,7 @@ class Model:
                 # Execute prompt function
                 self.generate_story_prompt()
                 model = self.configuration()
-                text_prompt = str(st.session_state.model_generate_image_prompt)
+                text_prompt = str(st.session_state.model_generate_story_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
                 if st.session_state.uploaded_image == None:
