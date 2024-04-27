@@ -332,8 +332,8 @@ class TabStory:
                 st.write("Doc")
         def download_story_to_odt(self) -> None:
                 st.write("Odt")
-        def download_story_popover(self) -> None:
-                with st.popover("Download Story", use_container_width=True):
+        def download_story_popover(self, disabled) -> None:
+                with st.popover("Download Story", use_container_width=True, disabled = disabled):
                         self.download_story_to_pdf()
                         self.download_story_to_doc()
                         self.download_story_to_odt()
