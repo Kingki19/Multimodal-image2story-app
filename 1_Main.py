@@ -283,6 +283,10 @@ class TabInput:
                 if 'generate_button_clicked' not in st.session_state:
                         st.session_state.generate_button_clicked = False
                 if st.button("Generate a story", disabled = st.session_state.disabled_generate_button):
+                        # Manage error if user forget to input gemini api key
+                        if self.gemini_api_key == "":
+                                st.error("You forgot to enter the Gemini-API-Key")
+                                return
                         # Execute some code here, right now for debug
                         Model(self.gemini_api_key).generate_story_from_image()
                         st.session_state.iteration += 1
