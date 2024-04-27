@@ -420,7 +420,7 @@ def main():
         Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
         """)
 
-        col_tutorial, col_tutor_popover = st.columns(2)
+        col_tutorial, col_tutor_popover = st.columns([5, 2])
         with col_tutorial: st.write("If you are new to this application, please pay attention to the short tutorial on the side/below")
         with col_tutor_popover:
                 with st.popover("Quick Tutorial:"):
