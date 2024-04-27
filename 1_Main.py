@@ -131,7 +131,9 @@ class Model:
                 text_prompt = str(st.session_state.model_prompt)
                 # text_prompt = "Buatkan cerita dari gambar ini!"
                 image = st.session_state.uploaded_image
-                # with st.spinner('Wait...'): # Add loading screen
+                if st.session_state.uploaded_image == None:
+                        st.error("Image is not uploaded")
+                        return
                 response = model.generate_content([text_prompt, image], stream=False)
                 
                 st.write(response.text)
