@@ -275,7 +275,7 @@ class TabInput:
                 add_message_input = st.text_area(
                         'Additional Message',
                         help = 'Additional prompts that are not in the options',
-                        placeholder = 'giving (1) a name or atmosphere or certain emotion to an image; (2) more detail to story that will be generated such as dialog or not'
+                        placeholder = '(1) a name or atmosphere or certain emotion to an image; (2) more detail to story that will be generated such as dialog, interaction, etc'
                 )
                 st.session_state.add_message = add_message_input
                 
