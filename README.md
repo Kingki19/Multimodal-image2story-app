@@ -4,8 +4,8 @@
 
 ### To-Do List
 - [x] Create Gemini-AI API key access as variable and input
-- [ ] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
-  - [ ] (1) Create Main apps [in progress]
+- [ x] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
+  - [x] (1) Create Main apps [in progress]
     - [x] Create tabs for input images
       - Make it repetitive and can generate story based on new image input and text-stories that already generated;
       - Input:
@@ -15,15 +15,15 @@
         - [x] Image Type: e.g Character, backstory, moments, etc
         - [x] Total paragraph result: 1 to 3 paragraph
         - [x] Additional message (optional) 
-    - [ ] Create tabs for stories
-    - [ ] Create tabs for chat with stories
-  - [ ] (2) Create documentation
+    - [x] Create tabs for stories
+    - [x] Create tabs for chat with stories
+  - [x] (2) Create documentation
     - [ ] How to use it
-    - [ ] Graph how it works
-  - [ ] (3) Create About
-    - [ ] App description
-    - [ ] Teams
-    - [ ] Contact Dev (if there's bug)
+    - [x] Graph how it works
+  - [x] (3) Create About
+    - [x] App description
+    - [x] Teams
+    - [x] Contact Dev (if there's bug)
 
 ### Motivation Behind Creating this Application
 1. **Hackathon Inspiration**:
@@ -41,19 +41,17 @@
 MI2S (Multimodal Image2Stories) is an innovative application designed to transform images into captivating narratives. This cutting-edge tool utilizes multimodal technology, combining visual and textual elements to generate short stories or even full-length novels based on input images. By leveraging Gemini-AI, MI2S analyzes the content, context, and emotions conveyed in the image to craft immersive and engaging storytelling experiences. Whether you're seeking to create compelling short stories or embark on novel-writing adventures, MI2S opens up endless possibilities for creative expression through the fusion of visual and literary arts.
 
 ### Related Link
-- App: [https://multimodal-image2story-app-9kvsmmqfjyyrbzs3nlza9e.streamlit.app/](https://multimodal-image2story-app-9kvsmmqfjyyrbzs3nlza9e.streamlit.app/)
-  *I will change link name later after i finish it.*
+- App: [https://multimodal-image2story.streamlit.app/](https://multimodal-image2story.streamlit.app/)
 - Video: *later*
-- Devpost Project: *later*
+- Devpost Project: [https://devpost.com/software/project-cw5gkdms0it3](https://devpost.com/software/project-cw5gkdms0it3)
 
 ### Technologies
 1. Python
 2. Streamlit (python framework and deployment)
 3. Gemini AI (access via API)
-4. Database? (still being considered)
+4. String to doc converter library like IO, docx, odt, pdf.
 
-### Graph
-*later*
+
 
 ### Journals/Reposities/App Reference & Inspiration
 1. [seiweiqing - image2story](https://github.com/seaweiqing/image2story) (Github Repo)
