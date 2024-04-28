@@ -8,9 +8,11 @@ def main():
         st.header('Graph Input-Output Process')
         st.markdown("""
         ```mermaid
-        flowchart LR
-                A-- This is the text! ---B
-
+                graph TD;
+                A-->B;
+                A-->C;
+                B-->D;
+                C-->D;
         ```
         """)
         st.divider() 
