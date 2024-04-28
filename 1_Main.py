@@ -87,7 +87,25 @@ class Model:
                 gemini_version = 'models/gemini-1.5-pro-latest' # Here if you want to change gemini model, i set it into this because it support multimodal input. check https://ai.google.dev/api/python/google/generativeai/list_models
                 model = genai.GenerativeModel(gemini_version)
                 return model
-        
+                
+        def summary_prompt(self) -> str: # This is not finish yet (don't call it)
+                '''If user already generated lot of story, Model can't handle so many input. So i made another model to summary the result'''
+                if 'story_results' not in st.session_state:
+                        st.session_state.story_results = []
+                if len(st.session_state.story_results) < 3: #This mean if user already generate 3 story (press generate button 3 times)
+                        return None
+                else:
+                        story_combined = '\n\n'.join(st.session_state.story_results)
+                        prompt = f"""
+                        Help me to summarize this whole story:   
+                        {story_combined}
+                        """
+        def summarize_the_story(self) -> str: # This is not finish yet (don't call it)
+                '''Model summarize the story'''
+                prompt = self.summary_prompt()
+                if prompt is not None:
+                        return None
+                
         def generate_story_prompt(self) -> str:
                 '''Manage prompt that will used to input it to Gemini'''
                 if 'story_results' not in st.session_state:
@@ -96,6 +114,7 @@ class Model:
                         st.session_state.model_generate_story_prompt = None
                 # Combined all stories from a list into a string
                 story_combined = '\n\n'.join(st.session_state.story_results)
+                last_generated_story = st.session_state.story_results[-1]
                 input_prompt = f"""
                         Hey, help me to generate a continuous story based on some image input.
                         For now, the following story is produced:  
