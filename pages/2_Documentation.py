@@ -12,7 +12,7 @@ def main():
                 api_key[/User input api key/]
                 api_key_bool{API-key exist or not?}
                 input_variable[/User input image, writing style, etc/]
-                
+                api_key --> api_key_bool
                 api_key_bool -- API key doesn't exist, input again --> api_key
                 api_key_bool -- API key exist, continue --> input_variable
 
