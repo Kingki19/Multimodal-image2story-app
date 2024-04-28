@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit_mermaid as stmd
 
 def main():
         st.title('MI2S Documentation')
@@ -6,15 +7,14 @@ def main():
         st.header('Feature:')
         st.divider()
         st.header('Graph Input-Output Process')
-        st.markdown("""
-        ```mermaid
-                graph TD;
+        code = """
+        graph TD;
                 A-->B;
                 A-->C;
                 B-->D;
                 C-->D;
-        ```
-        """)
+        """
+        stmd.st_mermaid(code)
         st.divider() 
 
 main()
