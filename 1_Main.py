@@ -114,7 +114,10 @@ class Model:
                         st.session_state.model_generate_story_prompt = None
                 # Combined all stories from a list into a string
                 story_combined = '\n\n'.join(st.session_state.story_results)
-                last_generated_story = st.session_state.story_results[-1]
+                if len(st.session_state.story_results) > 0:
+                        last_generated_story = st.session_state.story_results[-1]
+                else: 
+                        last_generated_story = ""
                 input_prompt = f"""
                         Hey, help me to generate a continuous story based on some image input.
                         For now, the following story is produced:  
