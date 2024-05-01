@@ -4,7 +4,7 @@
 
 ### To-Do List
 - [x] Create Gemini-AI API key access as variable and input
-- [ x] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
+- [x] Create Multipage (1) Main apps; (2) Documentation how to use it; (3) About
   - [x] (1) Create Main apps [in progress]
     - [x] Create tabs for input images
       - Make it repetitive and can generate story based on new image input and text-stories that already generated;
@@ -18,12 +18,16 @@
     - [x] Create tabs for stories
     - [x] Create tabs for chat with stories
   - [x] (2) Create documentation
-    - [ ] How to use it
+    - [x] How to use it (in quick tutorial)
     - [x] Graph how it works
   - [x] (3) Create About
     - [x] App description
     - [x] Teams
     - [x] Contact Dev (if there's bug)
+
+### Additional Feature that i would add later
+1. [ ] Chat With Story
+2. [ ] Upload document to continue story
 
 ### Motivation Behind Creating this Application
 1. **Hackathon Inspiration**:
@@ -42,7 +46,7 @@ MI2S (Multimodal Image2Stories) is an innovative application designed to transfo
 
 ### Related Link
 - App: [https://multimodal-image2story.streamlit.app/](https://multimodal-image2story.streamlit.app/)
-- Video: *later*
+- Video: [https://youtu.be/DGMBAHWCLaA?si=_1W-oMRDJp1qfk27](https://youtu.be/DGMBAHWCLaA?si=_1W-oMRDJp1qfk27)
 - Devpost Project: [https://devpost.com/software/project-cw5gkdms0it3](https://devpost.com/software/project-cw5gkdms0it3)
 
 ### Technologies
